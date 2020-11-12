@@ -7,10 +7,11 @@
 
 import Foundation
 import Alamofire
+import Combine
 
 protocol RemoteDataSourceProtocol: class{
     
-    func getPlaces(result: @escaping (Result<[PlaceResponse], URLError>) -> Void)
+    func getPlaces() -> AnyPublisher<[PlaceResponse], Error>
     
 }
 
@@ -24,22 +25,23 @@ final class RemoteDataSource: NSObject{
 
 extension RemoteDataSource: RemoteDataSourceProtocol{
     
-    func getPlaces(result: @escaping (Result<[PlaceResponse], URLError>) -> Void) {
+    func getPlaces() -> AnyPublisher<[PlaceResponse], Error> {
         
-        guard let url = URL(string: Endpoints.Gets.places.url) else{ return }
-        
-        AF.request(url).validate().responseDecodable(of: PlacesResponse.self){response in
+        return Future<[PlaceResponse], Error> { completion in
             
-            switch response.result{
-                
-                case .success(let value):
-                    result(.success(value.places))
-                
-                case .failure:
-                    result(.failure(.invalidResponse))
+            if let url = URL(string: Endpoints.Gets.places.url){
+                AF.request(url)
+                    .validate()
+                    .responseDecodable(of: PlacesResponse.self) { response in
+                        switch response.result {
+                            case .success(let value):
+                                completion(.success(value.places))
+                            case .failure:
+                                completion(.failure(URLError.invalidResponse))
+                        }
+                    }
             }
-            
-        }
+        }.eraseToAnyPublisher()
         
     }
     

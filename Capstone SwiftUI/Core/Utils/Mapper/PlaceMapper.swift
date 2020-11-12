@@ -17,7 +17,7 @@ final class PlaceMapper {
             return PlaceModel(
                 id: result.id,
                 name: result.name,
-                description: result.description,
+                desc: result.desc,
                 address: result.address,
                 like: Int(result.like),
                 image: result.image
@@ -32,7 +32,7 @@ final class PlaceMapper {
             let newPlace = PlaceEntity()
             newPlace.id = Int(result.id)
             newPlace.name = result.name
-            newPlace.desc = result.description
+            newPlace.desc = result.desc
             newPlace.address = result.address
             newPlace.like = result.like
             newPlace.image = result.image
@@ -47,7 +47,7 @@ final class PlaceMapper {
             return PlaceModel(
                 id: result.id,
                 name: result.name,
-                description: result.description,
+                desc: result.desc,
                 address: result.address,
                 like: Int(result.like),
                 image: result.image

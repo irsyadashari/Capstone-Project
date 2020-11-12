@@ -7,14 +7,13 @@
 
 import Foundation
 import RealmSwift
+import Combine
 
 protocol LocaleDataSourceProtocol: class{
     
-    func getPlaces(result: @escaping (Result<[PlaceEntity], DatabaseError>) -> Void)
-    func addPlaces(
-        from places: [PlaceEntity],
-        result: @escaping (Result<Bool, DatabaseError>) -> Void
-    )
+    func getPlaces() -> AnyPublisher<[PlaceEntity], Error>
+    func addPlaces(from places: [PlaceEntity]) -> AnyPublisher<Bool, Error>
+    
 }
 
 final class LocaleDataSource: NSObject {
@@ -33,42 +32,42 @@ final class LocaleDataSource: NSObject {
 
 extension LocaleDataSource: LocaleDataSourceProtocol{
     
-    func getPlaces(result: @escaping (Result<[PlaceEntity], DatabaseError>) -> Void) {
+    func getPlaces() -> AnyPublisher<[PlaceEntity], Error> {
         
-        if let realm = realm{
-            let places: Results<PlaceEntity> = {
-                realm.objects(PlaceEntity.self)
-                    .sorted(byKeyPath: "name", ascending: true)
-            }()
+        return Future<[PlaceEntity], Error>{ completion in
             
-            result(.success(places.toArray(ofType: PlaceEntity.self)))
-        }else{
-            result(.failure(.invalidInstance))
-        }
-        
-    }
-    
-    func addPlaces(
-        from places: [PlaceEntity],
-        result: @escaping (Result<Bool, DatabaseError>) -> Void) {
-        
-        if let realm = realm {
-            do {
-                try realm.write {
-                    for place in places {
-                        realm.add(place, update: .all)
-                    }
-                    result(.success(true))
-                }
-            } catch {
-                result(.failure(.requestFailed))
+            if let realm = self.realm{
+                let places: Results<PlaceEntity> = {
+                    realm.objects(PlaceEntity.self)
+                        .sorted(byKeyPath: "name", ascending: true)
+                }()
+                completion(.success(places.toArray(ofType: PlaceEntity.self)))
+            }else{
+                completion(.failure(DatabaseError.invalidInstance))
             }
-        } else {
-            result(.failure(.invalidInstance))
-        }
+        }.eraseToAnyPublisher()
         
     }
     
+    func addPlaces(from places: [PlaceEntity]) -> AnyPublisher<Bool, Error> {
+        
+        return Future<Bool, Error> { completion in
+            if let realm = self.realm {
+                do {
+                    try realm.write {
+                        for place in places {
+                            realm.add(place, update: .all)
+                        }
+                        completion(.success(true))
+                    }
+                } catch {
+                    completion(.failure(DatabaseError.requestFailed))
+                }
+            } else {
+                completion(.failure(DatabaseError.invalidInstance))
+            }
+        }.eraseToAnyPublisher()
+    }
 }
 
 extension Results{

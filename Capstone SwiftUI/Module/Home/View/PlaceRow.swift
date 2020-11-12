@@ -42,7 +42,7 @@ extension PlaceRow{
                 .font(.title)
                 .bold()
             
-            Text(place.description)
+            Text(place.desc)
                 .font(.system(size: 14))
                 .lineLimit(2)
         }.padding(

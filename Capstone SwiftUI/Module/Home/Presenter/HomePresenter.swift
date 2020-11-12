@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import Combine
 
 class HomePresenter: ObservableObject {
 
+    private var cancellables: Set<AnyCancellable> = []
+    
     private let router = HomeRouter()
     private let homeUseCase: HomeUseCase
     
@@ -22,22 +25,19 @@ class HomePresenter: ObservableObject {
     
     func getPlaces() {
         loadingState = true
-        homeUseCase.getPlaces{ result in
-            
-            switch result {
-                case .success(let places):
-                    DispatchQueue.main.async {
+        homeUseCase.getPlaces()
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { completion in
+                switch completion{
+                    case .failure:
+                        self.errorMessage = String(describing: completion)
+                    case .finished:
                         self.loadingState = false
-                        self.places = places
-                    }
-                case .failure(let error):
-                    DispatchQueue.main.async {
-                        self.loadingState = false
-                        self.errorMessage = error.localizedDescription
-                    }
-            }
-            
-        }
+                }
+            }, receiveValue: { places in
+                self.places = places
+            })
+            .store(in: &cancellables)
     }
     
     func linkBuilder<Content: View>(

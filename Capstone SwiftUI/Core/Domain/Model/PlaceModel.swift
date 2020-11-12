@@ -11,7 +11,7 @@ struct PlaceModel: Equatable, Identifiable {
     
     let id: Int
     let name: String
-    let description: String
+    let desc: String
     let address: String
     let like: Int
     let image: String

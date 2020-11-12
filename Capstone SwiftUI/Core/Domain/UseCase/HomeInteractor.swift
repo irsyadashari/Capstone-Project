@@ -6,11 +6,10 @@
 //
 
 import Foundation
+import Combine
 
 protocol HomeUseCase {
-    
-    func getPlaces(completion: @escaping (Result<[PlaceModel], Error>) -> Void)
-    
+    func getPlaces() -> AnyPublisher<[PlaceModel], Error>
 }
 
 class HomeInteractor: HomeUseCase{
@@ -21,10 +20,8 @@ class HomeInteractor: HomeUseCase{
         self.repository = repository
     }
     
-    func getPlaces(completion: @escaping (Result<[PlaceModel], Error>) -> Void) {
-        repository.getPlaces { result in
-            completion(result)
-        }
+    func getPlaces() -> AnyPublisher<[PlaceModel], Error> {
+        return repository.getPlaces()
     }
     
 }

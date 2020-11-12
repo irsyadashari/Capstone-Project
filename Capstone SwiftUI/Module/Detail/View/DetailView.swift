@@ -52,7 +52,7 @@ extension DetailView{
     }
     
     var description: some View {
-        Text(self.presenter.place.description)
+        Text(self.presenter.place.desc)
             .font(.system(size: 15))
     }
     

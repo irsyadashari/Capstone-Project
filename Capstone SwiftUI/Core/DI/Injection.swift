@@ -3,7 +3,6 @@
 //  Capstone Project
 //
 //  Created by Irsyad Ashari on 11/11/20.
-//
 
 import Foundation
 import RealmSwift

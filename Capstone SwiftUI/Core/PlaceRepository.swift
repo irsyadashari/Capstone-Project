@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import Combine
 
 protocol PlaceRepositoryProtocol {
     
-    func getPlaces(result: @escaping (Result<[PlaceModel], Error>) -> Void)
+    func getPlaces() -> AnyPublisher<[PlaceModel], Error>
 }
 
 final class PlaceRepository: NSObject{
@@ -29,47 +30,28 @@ final class PlaceRepository: NSObject{
 
 extension PlaceRepository: PlaceRepositoryProtocol{
     
-    func getPlaces(
-        result: @escaping (Result<[PlaceModel], Error>) -> Void
-    ) {
-        locale.getPlaces { localeResponses in
-            switch localeResponses {
-                case .success(let placeEntity):
-                    let placeList = PlaceMapper.mapPlaceEntitiesToDomains(input: placeEntity)
-                    if placeList.isEmpty {
-                        self.remote.getPlaces { remoteResponses in
-                            switch remoteResponses {
-                                case .success(let placeResponses):
-                                    let placeEntities = PlaceMapper.mapPlaceResponsesToEntities(input: placeResponses)
-                                    self.locale.addPlaces(from: placeEntities) { addState in
-                                        switch addState {
-                                            case .success(let resultFromAdd):
-                                                if resultFromAdd {
-                                                    self.locale.getPlaces { localeResponses in
-                                                        switch localeResponses {
-                                                            case .success(let placeEntity):
-                                                                let resultList = PlaceMapper.mapPlaceEntitiesToDomains(input: placeEntity)
-                                                                result(.success(resultList))
-                                                            case .failure(let error):
-                                                                result(.failure(error))
-                                                        }
-                                                    }
-                                                }
-                                            case .failure(let error):
-                                                result(.failure(error))
-                                        }
-                                    }
-                                case .failure(let error):
-                                    result(.failure(error))
-                            }
+    func getPlaces() -> AnyPublisher<[PlaceModel], Error>{
+        
+        return self.locale.getPlaces()
+            .flatMap{ result -> AnyPublisher<[PlaceModel], Error> in
+                if result.isEmpty {
+                    
+                    return self.remote.getPlaces()
+                        .map { PlaceMapper.mapPlaceResponsesToEntities(input: $0) }
+                        .flatMap { self.locale.addPlaces(from: $0) }
+                        .filter { $0 }
+                        .flatMap { _ in self.locale.getPlaces()
+                            .map { PlaceMapper.mapPlaceEntitiesToDomains(input: $0) }
                         }
-                    } else {
-                        result(.success(placeList))
-                    }
-                case .failure(let error):
-                    result(.failure(error))
-            }
-        }
+                        .eraseToAnyPublisher()
+                    
+                }else{
+                    return self.locale.getPlaces()
+                        .map { PlaceMapper.mapPlaceEntitiesToDomains(input: $0) }
+                        .eraseToAnyPublisher()
+                }
+            }.eraseToAnyPublisher()
+        
     }
     
     
