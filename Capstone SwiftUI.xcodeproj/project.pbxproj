@@ -140,7 +140,6 @@
 				BF0D969F255B96F80069F088 /* DI */,
 				BF0D96A1255B96F80069F088 /* Utils */,
 				BF0D96A8255B96F80069F088 /* Data */,
-				BF0D96AC255B96F80069F088 /* PlaceRepository.swift */,
 				BF0D96B1255B96F80069F088 /* Domain */,
 			);
 			path = Core;
@@ -191,6 +190,7 @@
 		BF0D96A8255B96F80069F088 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				BF0D96AC255B96F80069F088 /* PlaceRepository.swift */,
 				BF0D96A9255B96F80069F088 /* Locale */,
 				BF0D96AD255B96F80069F088 /* Remote */,
 			);
