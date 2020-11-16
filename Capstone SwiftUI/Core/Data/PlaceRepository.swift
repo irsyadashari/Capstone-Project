@@ -11,6 +11,7 @@ import Combine
 protocol PlaceRepositoryProtocol {
     
     func getPlaces() -> AnyPublisher<[PlaceModel], Error>
+    func toggleFavorite(place: PlaceModel) -> AnyPublisher<Bool, Error>
 }
 
 final class PlaceRepository: NSObject{
@@ -52,6 +53,12 @@ extension PlaceRepository: PlaceRepositoryProtocol{
                 }
             }.eraseToAnyPublisher()
         
+    }
+    
+    func toggleFavorite(place: PlaceModel) -> AnyPublisher<Bool, Error> {
+        
+        return self.locale.toggleFavorite(place: place)
+            .eraseToAnyPublisher()
     }
     
     

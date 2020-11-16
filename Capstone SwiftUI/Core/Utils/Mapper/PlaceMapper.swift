@@ -20,7 +20,9 @@ final class PlaceMapper {
                 desc: result.desc,
                 address: result.address,
                 like: Int(result.like),
-                image: result.image
+                image: result.image,
+                isFavorite: false
+                
             )
         }
     }
@@ -36,6 +38,7 @@ final class PlaceMapper {
             newPlace.address = result.address
             newPlace.like = result.like
             newPlace.image = result.image
+            newPlace.isFavorite = false
             return newPlace
         }
     }
@@ -50,7 +53,8 @@ final class PlaceMapper {
                 desc: result.desc,
                 address: result.address,
                 like: Int(result.like),
-                image: result.image
+                image: result.image,
+                isFavorite: result.isFavorite
             )
         }
     }

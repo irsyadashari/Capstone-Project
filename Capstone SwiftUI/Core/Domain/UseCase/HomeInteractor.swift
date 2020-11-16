@@ -5,11 +5,11 @@
 //  Created by Irsyad Ashari on 11/11/20.
 //
 
-import Foundation
 import Combine
 
 protocol HomeUseCase {
     func getPlaces() -> AnyPublisher<[PlaceModel], Error>
+    func toggleFavorite(place: PlaceModel) -> AnyPublisher<Bool, Error>
 }
 
 class HomeInteractor: HomeUseCase{
@@ -22,6 +22,10 @@ class HomeInteractor: HomeUseCase{
     
     func getPlaces() -> AnyPublisher<[PlaceModel], Error> {
         return repository.getPlaces()
+    }
+    
+    func toggleFavorite(place: PlaceModel) -> AnyPublisher<Bool, Error> {
+        return repository.toggleFavorite(place: place)
     }
     
 }

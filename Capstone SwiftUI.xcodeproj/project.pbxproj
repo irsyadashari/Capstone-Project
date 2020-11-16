@@ -31,6 +31,12 @@
 		BF0D96DE255BAF340069F088 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0D96DD255BAF340069F088 /* HomeView.swift */; };
 		BF0D96E1255BB0E80069F088 /* PlaceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0D96E0255BB0E80069F088 /* PlaceRow.swift */; };
 		BF0D96E4255BB8B70069F088 /* LocaleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0D96E3255BB8B70069F088 /* LocaleDataSource.swift */; };
+		BF42FC2C255E68250031AA60 /* FavoriteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF42FC2B255E68250031AA60 /* FavoriteRouter.swift */; };
+		BF42FC35255E7C460031AA60 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BF42FC34255E7C460031AA60 /* .swiftlint.yml */; };
+		BF42FC40255E80140031AA60 /* FavoriteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF42FC3F255E80140031AA60 /* FavoriteDataSource.swift */; };
+		BF42FC43255E82270031AA60 /* FavoritePlaceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF42FC42255E82270031AA60 /* FavoritePlaceRepository.swift */; };
+		BF42FC46255E846F0031AA60 /* FavoriteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF42FC45255E846F0031AA60 /* FavoriteInteractor.swift */; };
+		BF42FC702562A95F0031AA60 /* RealmMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF42FC6F2562A95F0031AA60 /* RealmMigrator.swift */; };
 		CF78BAB63466F53BDDF3C68A /* Pods_Capstone_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF3FF6DE9EC5C59C6B5CAED /* Pods_Capstone_SwiftUI.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +69,12 @@
 		BF0D96DD255BAF340069F088 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BF0D96E0255BB0E80069F088 /* PlaceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceRow.swift; sourceTree = "<group>"; };
 		BF0D96E3255BB8B70069F088 /* LocaleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleDataSource.swift; sourceTree = "<group>"; };
+		BF42FC2B255E68250031AA60 /* FavoriteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouter.swift; sourceTree = "<group>"; };
+		BF42FC34255E7C460031AA60 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		BF42FC3F255E80140031AA60 /* FavoriteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDataSource.swift; sourceTree = "<group>"; };
+		BF42FC42255E82270031AA60 /* FavoritePlaceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePlaceRepository.swift; sourceTree = "<group>"; };
+		BF42FC45255E846F0031AA60 /* FavoriteInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteInteractor.swift; sourceTree = "<group>"; };
+		BF42FC6F2562A95F0031AA60 /* RealmMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMigrator.swift; sourceTree = "<group>"; };
 		D0CD701C80D10A238620A1F3 /* Pods-Capstone SwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Capstone SwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-Capstone SwiftUI/Pods-Capstone SwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +101,7 @@
 		BF0D9671255B94660069F088 = {
 			isa = PBXGroup;
 			children = (
+				BF42FC34255E7C460031AA60 /* .swiftlint.yml */,
 				BF0D967C255B94660069F088 /* Capstone SwiftUI */,
 				BF0D967B255B94660069F088 /* Products */,
 				D783C03F694C9F33AC21DA87 /* Pods */,
@@ -191,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				BF0D96AC255B96F80069F088 /* PlaceRepository.swift */,
+				BF42FC42255E82270031AA60 /* FavoritePlaceRepository.swift */,
 				BF0D96A9255B96F80069F088 /* Locale */,
 				BF0D96AD255B96F80069F088 /* Remote */,
 			);
@@ -202,6 +216,7 @@
 			children = (
 				BF0D96AA255B96F80069F088 /* Entity */,
 				BF0D96E3255BB8B70069F088 /* LocaleDataSource.swift */,
+				BF42FC3F255E80140031AA60 /* FavoriteDataSource.swift */,
 			);
 			path = Locale;
 			sourceTree = "<group>";
@@ -244,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				BF0D96B3255B96F80069F088 /* PlaceModel.swift */,
+				BF42FC6F2562A95F0031AA60 /* RealmMigrator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -253,6 +269,7 @@
 			children = (
 				BF0D96B5255B96F80069F088 /* HomeInteractor.swift */,
 				BF0D96B6255B96F80069F088 /* DetailInteractor.swift */,
+				BF42FC45255E846F0031AA60 /* FavoriteInteractor.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -329,6 +346,7 @@
 		BF0D96CD255B96FF0069F088 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				BF42FC2B255E68250031AA60 /* FavoriteRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -397,6 +415,7 @@
 				BF0D9677255B94660069F088 /* Frameworks */,
 				BF0D9678255B94660069F088 /* Resources */,
 				DBA5FA7B06AEF75737F901DA /* [CP] Embed Pods Frameworks */,
+				BF42FC31255E7BB20031AA60 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -444,6 +463,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF42FC35255E7C460031AA60 /* .swiftlint.yml in Resources */,
 				BF0D968A255B94680069F088 /* LaunchScreen.storyboard in Resources */,
 				BF0D9687255B94680069F088 /* Preview Assets.xcassets in Resources */,
 				BF0D9684255B94680069F088 /* Assets.xcassets in Resources */,
@@ -453,6 +473,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		BF42FC31255E7BB20031AA60 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		D3BA573D89FCBE2378E56600 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -504,17 +541,22 @@
 				BF0D96DB255B98580069F088 /* DetailView.swift in Sources */,
 				BF0D96BF255B96F80069F088 /* PlaceModel.swift in Sources */,
 				BF0D967E255B94660069F088 /* AppDelegate.swift in Sources */,
+				BF42FC46255E846F0031AA60 /* FavoriteInteractor.swift in Sources */,
 				BF0D96D2255B96FF0069F088 /* HomePresenter.swift in Sources */,
 				BF0D96BE255B96F80069F088 /* RemoteDataSource.swift in Sources */,
 				BF0D96D3255B96FF0069F088 /* HomeRouter.swift in Sources */,
+				BF42FC2C255E68250031AA60 /* FavoriteRouter.swift in Sources */,
 				BF0D96B7255B96F80069F088 /* Injection.swift in Sources */,
+				BF42FC702562A95F0031AA60 /* RealmMigrator.swift in Sources */,
 				BF0D96BC255B96F80069F088 /* PlaceRepository.swift in Sources */,
 				BF0D96B8255B96F80069F088 /* APICall.swift in Sources */,
 				BF0D96E1255BB0E80069F088 /* PlaceRow.swift in Sources */,
 				BF0D96C0255B96F80069F088 /* HomeInteractor.swift in Sources */,
 				BF0D96BA255B96F80069F088 /* CustomError+Ext.swift in Sources */,
+				BF42FC43255E82270031AA60 /* FavoritePlaceRepository.swift in Sources */,
 				BF0D96BD255B96F80069F088 /* PlaceResponse.swift in Sources */,
 				BF0D9680255B94660069F088 /* SceneDelegate.swift in Sources */,
+				BF42FC40255E80140031AA60 /* FavoriteDataSource.swift in Sources */,
 				BF0D96C1255B96F80069F088 /* DetailInteractor.swift in Sources */,
 				BF0D96BB255B96F80069F088 /* PlaceEntity.swift in Sources */,
 				BF0D9682255B94660069F088 /* ContentView.swift in Sources */,

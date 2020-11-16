@@ -36,6 +36,23 @@ class HomePresenter: ObservableObject {
                 }
             }, receiveValue: { places in
                 self.places = places
+                print("places : \(places)")
+            })
+            .store(in: &cancellables)
+    }
+    
+    func toggleFavorite(place: PlaceModel){
+        
+        homeUseCase.toggleFavorite(place: place)
+            .sink(receiveCompletion: {completion in
+                switch completion{
+                    case .failure:
+                        self.errorMessage = String(describing: completion)
+                    case .finished:
+                        self.loadingState = false
+                }
+            }, receiveValue: { places in
+                print("success toggling")
             })
             .store(in: &cancellables)
     }

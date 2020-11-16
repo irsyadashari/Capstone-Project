@@ -5,7 +5,6 @@
 //  Created by Irsyad Ashari on 11/11/20.
 //
 
-import Foundation
 import RealmSwift
 import Combine
 
@@ -13,7 +12,7 @@ protocol LocaleDataSourceProtocol: class{
     
     func getPlaces() -> AnyPublisher<[PlaceEntity], Error>
     func addPlaces(from places: [PlaceEntity]) -> AnyPublisher<Bool, Error>
-    
+    func toggleFavorite(place: PlaceModel) -> AnyPublisher<Bool, Error>
 }
 
 final class LocaleDataSource: NSObject {
@@ -66,6 +65,31 @@ extension LocaleDataSource: LocaleDataSourceProtocol{
             }
         }.eraseToAnyPublisher()
     }
+    
+    func toggleFavorite(place: PlaceModel) -> AnyPublisher<Bool, Error>{
+        
+        return Future<Bool, Error> { completion in
+            if let realm = self.realm {
+                do {
+                    try realm.write {
+                        realm.create(
+                            PlaceEntity.self,
+                            value: ["id": place.id, "isFavorite": !place.isFavorite],
+                            update: .modified)
+                        completion(.success(true))
+                    }
+                } catch let error {
+                    // Handle error
+                    completion(.failure(DatabaseError.invalidInstance))
+                    print(error.localizedDescription)
+                }
+            } else {
+                completion(.failure(DatabaseError.invalidInstance))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    
 }
 
 extension Results{

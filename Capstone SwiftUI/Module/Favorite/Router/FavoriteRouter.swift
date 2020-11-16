@@ -1,13 +1,14 @@
 //
-//  HomeRouter.swift
-//  Capstone Project
+//  FavoriteRouter.swift
+//  Capstone SwiftUI
 //
-//  Created by Irsyad Ashari on 11/11/20.
+//  Created by Irsyad Ashari on 13/11/20.
 //
 
+import Foundation
 import SwiftUI
 
-class HomeRouter{
+class FavoriteRouter{
     
     func makeDetailView(for place: PlaceModel) -> some View{
         let detailUseCase = Injection.init().provideDetail(place: place)

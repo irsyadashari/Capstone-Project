@@ -10,11 +10,14 @@ import SDWebImageSwiftUI
 
 struct PlaceRow: View {
     
-    var place: PlaceModel
+    @ObservedObject var presenter: HomePresenter
+    @State var place: PlaceModel
+    @State var isFavorite = place.isFavorite
     
     var body: some View {
         VStack{
             imagePlace
+            Spacer()
             content
         }
         .frame(width: UIScreen.main.bounds.width - 32, height: 250)
@@ -38,6 +41,18 @@ extension PlaceRow{
     
     var content: some View {
         VStack(alignment: .leading, spacing: 10) {
+            
+            HStack{
+                Spacer()
+                Button(action: {toogleFavorite()}){
+                    if place.isFavorite{
+                        Image(systemName: "star.fill")
+                    }else{
+                        Image(systemName: "star")
+                    }
+                }
+            }
+            
             Text(place.name)
                 .font(.title)
                 .bold()
@@ -55,10 +70,9 @@ extension PlaceRow{
         )
     }
     
+    func toogleFavorite(){
+        presenter.toggleFavorite(place: place)
+        print("togle")
+    }
+    
 }
-
-//struct PlaceRow_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PlaceRow()
-//    }
-//}
