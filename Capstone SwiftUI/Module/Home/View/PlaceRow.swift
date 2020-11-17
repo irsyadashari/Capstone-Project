@@ -8,11 +8,11 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
+
 struct PlaceRow: View {
     
     @ObservedObject var presenter: HomePresenter
-    @State var place: PlaceModel
-    @State var isFavorite = place.isFavorite
+    var place: PlaceModel
     
     var body: some View {
         VStack{
@@ -45,11 +45,7 @@ extension PlaceRow{
             HStack{
                 Spacer()
                 Button(action: {toogleFavorite()}){
-                    if place.isFavorite{
-                        Image(systemName: "star.fill")
-                    }else{
-                        Image(systemName: "star")
-                    }
+                    Image(systemName: place.isFavorite ? "star.fill" : "star")
                 }
             }
             
@@ -70,7 +66,24 @@ extension PlaceRow{
         )
     }
     
+    struct FavoriteButton: View {
+       
+        @Binding var presenter: HomePresenter
+        @Binding var place: PlaceModel
+        
+        var body: some View{
+            
+            HStack{
+                Spacer()
+                Button(action: {presenter.toggleFavorite(place: place)}){
+                    Image(systemName: place.isFavorite ? "star.fill" : "star")
+                }
+            }
+        }
+    }
+    
     func toogleFavorite(){
+        
         presenter.toggleFavorite(place: place)
         print("togle")
     }

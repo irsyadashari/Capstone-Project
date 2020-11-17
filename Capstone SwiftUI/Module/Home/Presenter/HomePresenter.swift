@@ -51,7 +51,7 @@ class HomePresenter: ObservableObject {
                     case .finished:
                         self.loadingState = false
                 }
-            }, receiveValue: { places in
+            }, receiveValue: { _ in
                 print("success toggling")
             })
             .store(in: &cancellables)

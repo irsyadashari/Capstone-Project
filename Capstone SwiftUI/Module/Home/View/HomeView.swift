@@ -54,7 +54,7 @@ struct HomeView: View {
                 
                 
                 ZStack{
-                    if isfavoritedExist == false{
+                    if checkFavoriteTab(places: presenter.places) == false{
                         VStack{
                             
                             Image("No Favorite")
@@ -114,5 +114,19 @@ struct HomeView: View {
             
             .navigationTitle("Tourism App")
 
+    }
+    
+    func checkFavoriteTab(places : [PlaceModel]) -> Bool{
+        
+        var isFavoritedExist = false
+        
+        for place in places{
+            if place.isFavorite{
+                isFavoritedExist = true
+                return isFavoritedExist
+            }
+        }
+        
+        return isFavoritedExist
     }
 }

@@ -9,7 +9,7 @@ import Combine
 
 protocol HomeUseCase {
     func getPlaces() -> AnyPublisher<[PlaceModel], Error>
-    func toggleFavorite(place: PlaceModel) -> AnyPublisher<Bool, Error>
+    func toggleFavorite(place: PlaceModel) -> AnyPublisher<PlaceModel, Error>
 }
 
 class HomeInteractor: HomeUseCase{
@@ -24,7 +24,7 @@ class HomeInteractor: HomeUseCase{
         return repository.getPlaces()
     }
     
-    func toggleFavorite(place: PlaceModel) -> AnyPublisher<Bool, Error> {
+    func toggleFavorite(place: PlaceModel) -> AnyPublisher<PlaceModel, Error> {
         return repository.toggleFavorite(place: place)
     }
     

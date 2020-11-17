@@ -12,7 +12,7 @@ protocol LocaleDataSourceProtocol: class{
     
     func getPlaces() -> AnyPublisher<[PlaceEntity], Error>
     func addPlaces(from places: [PlaceEntity]) -> AnyPublisher<Bool, Error>
-    func toggleFavorite(place: PlaceModel) -> AnyPublisher<Bool, Error>
+    func toggleFavorite(place: PlaceModel) -> AnyPublisher<PlaceModel, Error>
 }
 
 final class LocaleDataSource: NSObject {
@@ -66,9 +66,9 @@ extension LocaleDataSource: LocaleDataSourceProtocol{
         }.eraseToAnyPublisher()
     }
     
-    func toggleFavorite(place: PlaceModel) -> AnyPublisher<Bool, Error>{
+    func toggleFavorite(place: PlaceModel) -> AnyPublisher<PlaceModel, Error>{
         
-        return Future<Bool, Error> { completion in
+        return Future<PlaceModel, Error> { completion in
             if let realm = self.realm {
                 do {
                     try realm.write {
@@ -76,7 +76,7 @@ extension LocaleDataSource: LocaleDataSourceProtocol{
                             PlaceEntity.self,
                             value: ["id": place.id, "isFavorite": !place.isFavorite],
                             update: .modified)
-                        completion(.success(true))
+                        completion(.success(place))
                     }
                 } catch let error {
                     // Handle error
