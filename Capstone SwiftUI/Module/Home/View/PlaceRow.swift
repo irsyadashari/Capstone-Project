@@ -12,7 +12,7 @@ struct PlaceRow: View {
     
     @ObservedObject var presenter: HomePresenter
     
-    @State var place: PlaceModel
+    var place: PlaceModel
     
     var placeIndex: Int{
         presenter.places.firstIndex(where: {$0.id == place.id}) ?? 0
@@ -49,7 +49,7 @@ extension PlaceRow{
             HStack{
                 Spacer()
                 Button(action: {toogleFavorite()}){
-                    Image(systemName: place.isFavorite ? "star.fill" : "star")
+                    Image(systemName: presenter.places[placeIndex].isFavorite ? "star.fill" : "star")
                 }
             }
             
@@ -72,7 +72,6 @@ extension PlaceRow{
     
     func toogleFavorite(){
         presenter.toggleFavorite(place: place)
-        place.isFavorite.toggle()
         presenter.getPlaces()
         print("togle")
     }

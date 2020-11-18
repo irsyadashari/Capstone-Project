@@ -313,25 +313,9 @@
 		BF0D96CA255B96FF0069F088 /* Favorite */ = {
 			isa = PBXGroup;
 			children = (
-				BF0D96CB255B96FF0069F088 /* Presenter */,
-				BF0D96CC255B96FF0069F088 /* View */,
 				BF0D96CD255B96FF0069F088 /* Router */,
 			);
 			path = Favorite;
-			sourceTree = "<group>";
-		};
-		BF0D96CB255B96FF0069F088 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		BF0D96CC255B96FF0069F088 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		BF0D96CD255B96FF0069F088 /* Router */ = {
@@ -347,7 +331,6 @@
 			children = (
 				BF0D96CF255B96FF0069F088 /* Presenter */,
 				BF0D96D0255B96FF0069F088 /* View */,
-				BF0D96D1255B96FF0069F088 /* Router */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -366,13 +349,6 @@
 				BF0D96DA255B98580069F088 /* DetailView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		BF0D96D1255B96FF0069F088 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 		BF0D96D5255B97150069F088 /* Supporting Files */ = {
