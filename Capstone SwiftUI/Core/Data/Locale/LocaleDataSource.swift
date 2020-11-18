@@ -24,7 +24,6 @@ final class LocaleDataSource: NSObject {
     static let sharedInstance: (Realm?) -> LocaleDataSource = {
         realmDatabase in return LocaleDataSource(realm: realmDatabase)
     }
-    
 }
 
 extension LocaleDataSource: LocaleDataSourceProtocol{
@@ -49,6 +48,7 @@ extension LocaleDataSource: LocaleDataSourceProtocol{
     func addPlaces(from places: [PlaceEntity]) -> AnyPublisher<Bool, Error> {
         
         return Future<Bool, Error> { completion in
+            
             if let realm = self.realm {
                 do {
                     try realm.write {

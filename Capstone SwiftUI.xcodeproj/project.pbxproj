@@ -34,8 +34,6 @@
 		BF42FC2C255E68250031AA60 /* FavoriteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF42FC2B255E68250031AA60 /* FavoriteRouter.swift */; };
 		BF42FC35255E7C460031AA60 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BF42FC34255E7C460031AA60 /* .swiftlint.yml */; };
 		BF42FC40255E80140031AA60 /* FavoriteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF42FC3F255E80140031AA60 /* FavoriteDataSource.swift */; };
-		BF42FC43255E82270031AA60 /* FavoritePlaceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF42FC42255E82270031AA60 /* FavoritePlaceRepository.swift */; };
-		BF42FC46255E846F0031AA60 /* FavoriteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF42FC45255E846F0031AA60 /* FavoriteInteractor.swift */; };
 		BF42FC702562A95F0031AA60 /* RealmMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF42FC6F2562A95F0031AA60 /* RealmMigrator.swift */; };
 		CF78BAB63466F53BDDF3C68A /* Pods_Capstone_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF3FF6DE9EC5C59C6B5CAED /* Pods_Capstone_SwiftUI.framework */; };
 /* End PBXBuildFile section */
@@ -72,8 +70,6 @@
 		BF42FC2B255E68250031AA60 /* FavoriteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouter.swift; sourceTree = "<group>"; };
 		BF42FC34255E7C460031AA60 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		BF42FC3F255E80140031AA60 /* FavoriteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDataSource.swift; sourceTree = "<group>"; };
-		BF42FC42255E82270031AA60 /* FavoritePlaceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePlaceRepository.swift; sourceTree = "<group>"; };
-		BF42FC45255E846F0031AA60 /* FavoriteInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteInteractor.swift; sourceTree = "<group>"; };
 		BF42FC6F2562A95F0031AA60 /* RealmMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMigrator.swift; sourceTree = "<group>"; };
 		D0CD701C80D10A238620A1F3 /* Pods-Capstone SwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Capstone SwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-Capstone SwiftUI/Pods-Capstone SwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -204,7 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				BF0D96AC255B96F80069F088 /* PlaceRepository.swift */,
-				BF42FC42255E82270031AA60 /* FavoritePlaceRepository.swift */,
 				BF0D96A9255B96F80069F088 /* Locale */,
 				BF0D96AD255B96F80069F088 /* Remote */,
 			);
@@ -269,7 +264,6 @@
 			children = (
 				BF0D96B5255B96F80069F088 /* HomeInteractor.swift */,
 				BF0D96B6255B96F80069F088 /* DetailInteractor.swift */,
-				BF42FC45255E846F0031AA60 /* FavoriteInteractor.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -541,7 +535,6 @@
 				BF0D96DB255B98580069F088 /* DetailView.swift in Sources */,
 				BF0D96BF255B96F80069F088 /* PlaceModel.swift in Sources */,
 				BF0D967E255B94660069F088 /* AppDelegate.swift in Sources */,
-				BF42FC46255E846F0031AA60 /* FavoriteInteractor.swift in Sources */,
 				BF0D96D2255B96FF0069F088 /* HomePresenter.swift in Sources */,
 				BF0D96BE255B96F80069F088 /* RemoteDataSource.swift in Sources */,
 				BF0D96D3255B96FF0069F088 /* HomeRouter.swift in Sources */,
@@ -553,7 +546,6 @@
 				BF0D96E1255BB0E80069F088 /* PlaceRow.swift in Sources */,
 				BF0D96C0255B96F80069F088 /* HomeInteractor.swift in Sources */,
 				BF0D96BA255B96F80069F088 /* CustomError+Ext.swift in Sources */,
-				BF42FC43255E82270031AA60 /* FavoritePlaceRepository.swift in Sources */,
 				BF0D96BD255B96F80069F088 /* PlaceResponse.swift in Sources */,
 				BF0D9680255B94660069F088 /* SceneDelegate.swift in Sources */,
 				BF42FC40255E80140031AA60 /* FavoriteDataSource.swift in Sources */,

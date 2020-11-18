@@ -12,8 +12,6 @@ struct HomeView: View {
     
     @State private var selection = 0
     
-    @State private var isfavoritedExist = false
-    
     var body: some View {
         
             TabView(selection: $selection) {
@@ -69,11 +67,11 @@ struct HomeView: View {
                     } else{
                         ScrollView(.vertical, showsIndicators: false){
                             ForEach(
-                                self.presenter.places.filter{ $0.isFavorite == true}
+                                presenter.places.filter{ $0.isFavorite == true}
                             ){ place in
                                
                                 ZStack{
-                                    self.presenter.linkBuilder(for: place){
+                                    presenter.linkBuilder(for: place){
                                         PlaceRow(presenter: presenter, place: place)
                                     }.buttonStyle(PlainButtonStyle())
                                 }.padding(8)
@@ -81,15 +79,15 @@ struct HomeView: View {
                         }
                     }
                 }.onAppear{
-                    if self.presenter.places.count == 0{
-                        self.presenter.getPlaces()
+                    if presenter.places.count == 0{
+                        presenter.getPlaces()
                     }
                 }.navigationBarTitle(
                     Text("Tourism App"),
                     displayMode: .automatic
                 )
                 .tabItem {
-                    Image(systemName: "bookmark.circle.fill")
+                    Image(systemName: "star.fill")
                     Text("Favorite")
                 }
                 .tag(1)

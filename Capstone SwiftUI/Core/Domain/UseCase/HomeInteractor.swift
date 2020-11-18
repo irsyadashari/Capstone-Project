@@ -25,6 +25,7 @@ class HomeInteractor: HomeUseCase{
     }
     
     func toggleFavorite(place: PlaceModel) -> AnyPublisher<PlaceModel, Error> {
+        
         return repository.toggleFavorite(place: place)
     }
     

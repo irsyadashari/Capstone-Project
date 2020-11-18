@@ -15,5 +15,5 @@ struct PlaceModel: Equatable, Identifiable {
     let address: String
     let like: Int
     let image: String
-    let isFavorite: Bool
+    var isFavorite: Bool
 }
