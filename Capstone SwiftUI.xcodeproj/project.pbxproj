@@ -33,7 +33,6 @@
 		BF0D96E4255BB8B70069F088 /* LocaleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0D96E3255BB8B70069F088 /* LocaleDataSource.swift */; };
 		BF42FC2C255E68250031AA60 /* FavoriteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF42FC2B255E68250031AA60 /* FavoriteRouter.swift */; };
 		BF42FC35255E7C460031AA60 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BF42FC34255E7C460031AA60 /* .swiftlint.yml */; };
-		BF42FC40255E80140031AA60 /* FavoriteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF42FC3F255E80140031AA60 /* FavoriteDataSource.swift */; };
 		BF42FC702562A95F0031AA60 /* RealmMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF42FC6F2562A95F0031AA60 /* RealmMigrator.swift */; };
 		CF78BAB63466F53BDDF3C68A /* Pods_Capstone_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF3FF6DE9EC5C59C6B5CAED /* Pods_Capstone_SwiftUI.framework */; };
 /* End PBXBuildFile section */
@@ -69,7 +68,6 @@
 		BF0D96E3255BB8B70069F088 /* LocaleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleDataSource.swift; sourceTree = "<group>"; };
 		BF42FC2B255E68250031AA60 /* FavoriteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouter.swift; sourceTree = "<group>"; };
 		BF42FC34255E7C460031AA60 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		BF42FC3F255E80140031AA60 /* FavoriteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDataSource.swift; sourceTree = "<group>"; };
 		BF42FC6F2562A95F0031AA60 /* RealmMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMigrator.swift; sourceTree = "<group>"; };
 		D0CD701C80D10A238620A1F3 /* Pods-Capstone SwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Capstone SwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-Capstone SwiftUI/Pods-Capstone SwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -211,7 +209,6 @@
 			children = (
 				BF0D96AA255B96F80069F088 /* Entity */,
 				BF0D96E3255BB8B70069F088 /* LocaleDataSource.swift */,
-				BF42FC3F255E80140031AA60 /* FavoriteDataSource.swift */,
 			);
 			path = Locale;
 			sourceTree = "<group>";
@@ -548,7 +545,6 @@
 				BF0D96BA255B96F80069F088 /* CustomError+Ext.swift in Sources */,
 				BF0D96BD255B96F80069F088 /* PlaceResponse.swift in Sources */,
 				BF0D9680255B94660069F088 /* SceneDelegate.swift in Sources */,
-				BF42FC40255E80140031AA60 /* FavoriteDataSource.swift in Sources */,
 				BF0D96C1255B96F80069F088 /* DetailInteractor.swift in Sources */,
 				BF0D96BB255B96F80069F088 /* PlaceEntity.swift in Sources */,
 				BF0D9682255B94660069F088 /* ContentView.swift in Sources */,

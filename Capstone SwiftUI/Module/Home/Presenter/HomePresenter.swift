@@ -44,7 +44,7 @@ class HomePresenter: ObservableObject {
     func toggleFavorite(place: PlaceModel){
         
         homeUseCase.toggleFavorite(place: place)
-            .receive(on: DispatchQueue.main)
+            .receive(on: RunLoop.main)
             .sink(receiveCompletion: {completion in
                 switch completion{
                     case .failure:
@@ -54,7 +54,7 @@ class HomePresenter: ObservableObject {
                 }
             }, receiveValue: { place in
                 print("success toggling")
-                self.places[self.places.firstIndex(where: {$0.id == place.id}) ?? 0].isFavorite = place.isFavorite
+                self.places[self.places.firstIndex(where: {$0.id == place.id}) ?? 0 + 1] = place
             })
             .store(in: &cancellables)
     }

@@ -10,6 +10,8 @@ struct HomeView: View {
     
     @ObservedObject var presenter: HomePresenter
     
+    @State var favoritedPlaces: [PlaceModel] = []
+    
     @State private var selection = 0
     
     var body: some View {
@@ -52,7 +54,7 @@ struct HomeView: View {
                 
                 
                 ZStack{
-                    if checkFavoriteTab(places: presenter.places) == false{
+                    if checkFavoriteTab() == false{
                         VStack{
                             
                             Image("No Favorite")
@@ -93,14 +95,24 @@ struct HomeView: View {
                 .tag(1)
                 
                 
-                
-                Text("Profile Tab")
-                    .font(.system(size: 30, weight: .bold, design: .rounded))
-                    .tabItem {
-                        Image(systemName: "person.crop.circle")
-                        Text("Profile")
-                    }
-                    .tag(2)
+                VStack{
+                    Image("icad")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 200, height: 200, alignment: .center)
+                        .clipShape(Circle())
+                    Text("Muhammad Irsyad Ashari")
+                        .font(.system(size: 28, weight: .bold, design: .rounded))
+                    Text("Mobile Developer")
+                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                    Text("+6287880931606")
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                }
+                .tabItem {
+                    Image(systemName: "person.crop.circle")
+                    Text("Profile")
+                }
+                .tag(2)
                 
                 
                 
@@ -114,11 +126,11 @@ struct HomeView: View {
 
     }
     
-    func checkFavoriteTab(places : [PlaceModel]) -> Bool{
+    func checkFavoriteTab() -> Bool{
         
         var isFavoritedExist = false
         
-        for place in places{
+        for place in presenter.places{
             if place.isFavorite{
                 isFavoritedExist = true
                 return isFavoritedExist

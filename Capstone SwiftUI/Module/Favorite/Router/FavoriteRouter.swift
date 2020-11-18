@@ -5,7 +5,6 @@
 //  Created by Irsyad Ashari on 13/11/20.
 //
 
-import Foundation
 import SwiftUI
 
 class FavoriteRouter{
