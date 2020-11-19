@@ -97,8 +97,6 @@ struct HomeView: View {
                                 }.padding(8)
                             }
                         }
-                        
-                        
                     }
                 }
             }.onAppear{
@@ -116,6 +114,7 @@ struct HomeView: View {
             .tag(1)
             // MARK: - PROFILE TAB
             VStack{
+                
                 Image("icad")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -137,6 +136,7 @@ struct HomeView: View {
         .accentColor(.pink)
         .onAppear(){
             UITabBar.appearance().barTintColor = .white
+
         }
         .navigationTitle("Tourism App")
         

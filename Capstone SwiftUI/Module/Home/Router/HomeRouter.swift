@@ -14,5 +14,4 @@ class HomeRouter{
         let presenter = DetailPresenter(detailUseCase: detailUseCase)
         return DetailView(presenter: presenter)
     }
-    
 }

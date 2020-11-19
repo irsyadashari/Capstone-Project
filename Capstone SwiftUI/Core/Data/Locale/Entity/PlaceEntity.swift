@@ -5,7 +5,6 @@
 //  Created by Irsyad Ashari on 05/11/20.
 //
 
-import Foundation
 import RealmSwift
 
 class PlaceEntity: Object {

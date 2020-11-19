@@ -5,8 +5,6 @@
 //  Created by Irsyad Ashari on 05/11/20.
 //
 
-import Foundation
-
 struct PlacesResponse: Decodable {
     let message: String
     let places: [PlaceResponse]

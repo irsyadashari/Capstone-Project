@@ -4,8 +4,6 @@
 //
 //  Created by Irsyad Ashari on 11/11/20.
 
-import Foundation
-
 protocol DetailUseCase{
     
     func getPlace() -> PlaceModel

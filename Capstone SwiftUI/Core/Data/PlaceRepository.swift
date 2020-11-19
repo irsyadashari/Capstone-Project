@@ -5,8 +5,8 @@
 //  Created by Irsyad Ashari on 11/11/20.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 protocol PlaceRepositoryProtocol {
     

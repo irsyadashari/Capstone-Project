@@ -19,14 +19,12 @@ struct DetailView: View {
             }else{
                 ScrollView(.vertical){
                     VStack{
-                        imageCategory
-                        spacer
+                        imagePlace
                         content
-                        spacer
-                    }.padding()
+                    }
                 }
             }
-        }.navigationBarTitle(Text(self.presenter.place.name), displayMode: .large)
+        }
     }
 }
 
@@ -42,13 +40,31 @@ extension DetailView{
         }
     }
     
-    var imageCategory: some View{
+    var imagePlace: some View{
         WebImage(url: URL(string: self.presenter.place.image))
             .resizable()
             .indicator(.activity)
+            .scaledToFill()
+            .background(Color(.systemPink))
             .transition(.fade(duration: 0.5))
-            .scaledToFit()
-            .frame(width: 250.0, height: 250.0, alignment: .center)
+            .frame(width: 300, height: 300, alignment: .center)
+            .ignoresSafeArea()
+            .overlay(
+                VStack{
+                    spacer
+                    HStack{
+                        spacer
+                        Image("like")
+                            .resizable()
+                            .frame(width: 30, height: 30, alignment: .center)
+                        
+                        Text(" \(self.presenter.place.like)")
+                            .foregroundColor(Color.pink)
+                            .font(.system(size: 24, weight: .bold, design: .rounded))
+                    }
+                    .padding(.bottom, 24)
+                }
+            )
     }
     
     var description: some View {
@@ -63,15 +79,13 @@ extension DetailView{
     
     var content: some View {
         VStack(alignment: .leading, spacing: 0) {
-            headerTitle("Description")
-                .padding([.top, .bottom])
+            Text(self.presenter.place.name)
+                .font(.system(size: 28, weight: .bold, design: .rounded))
+            Text(self.presenter.place.address)
+                .foregroundColor(Color(.gray))
+                .font(.system(size: 14, weight: .bold, design: .rounded))
+                .padding(.bottom, 24)
             description
-        }
+        }.padding()
     }
 }
-
-//struct DetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DetailView()
-//    }
-//}

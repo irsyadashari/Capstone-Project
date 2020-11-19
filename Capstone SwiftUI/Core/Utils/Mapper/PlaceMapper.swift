@@ -5,8 +5,6 @@
 //  Created by Irsyad Ashari on 11/11/20.
 //
 
-import Foundation
-
 final class PlaceMapper {
     
     static func mapPlaceResponsesToDomains(
