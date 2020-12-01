@@ -9,9 +9,9 @@ import SwiftUI
 
 class HomeRouter {
     
-    func makeDetailView(for place: PlaceModel) -> some View {
+  func makeDetailView(for place: PlaceModel, homePresenter: HomePresenter) -> some View {
         let detailUseCase = Injection.init().provideDetail(place: place)
         let presenter = DetailPresenter(detailUseCase: detailUseCase)
-        return DetailView(presenter: presenter)
+        return DetailView(presenter: presenter, homePresenter: homePresenter)
     }
 }

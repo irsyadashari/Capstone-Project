@@ -75,7 +75,6 @@ extension PlaceRow {
     func toogleFavorite() {
         presenter.toggleFavorite(place: place)
         presenter.getPlaces()
-        print("togle")
     }
     
 }
