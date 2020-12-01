@@ -6,9 +6,9 @@
 
 import RealmSwift
 
-final class Injection: NSObject{
+final class Injection: NSObject {
     
-    private func provideRepository() -> PlaceRepositoryProtocol{
+    private func provideRepository() -> PlaceRepositoryProtocol {
         
         let realm = try? Realm()
         let locale: LocaleDataSource = LocaleDataSource.sharedInstance(realm)
@@ -17,12 +17,12 @@ final class Injection: NSObject{
         return PlaceRepository.sharedInstance(locale, remote)
     }
     
-    func provideHome() -> HomeUseCase{
+    func provideHome() -> HomeUseCase {
         let repository = provideRepository()
         return HomeInteractor(repository: repository)
     }
     
-    func provideDetail(place: PlaceModel) -> DetailUseCase{
+    func provideDetail(place: PlaceModel) -> DetailUseCase {
         let repository = provideRepository()
         return DetailInteractor(repository: repository, place: place)
     }

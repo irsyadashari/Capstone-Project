@@ -14,7 +14,7 @@ protocol PlaceRepositoryProtocol {
     func toggleFavorite(place: PlaceModel) -> AnyPublisher<PlaceModel, Error>
 }
 
-final class PlaceRepository: NSObject{
+final class PlaceRepository: NSObject {
     
     typealias PlaceInstance = (LocaleDataSource, RemoteDataSource) -> PlaceRepository
     fileprivate let remote: RemoteDataSource
@@ -29,12 +29,12 @@ final class PlaceRepository: NSObject{
     
 }
 
-extension PlaceRepository: PlaceRepositoryProtocol{
+extension PlaceRepository: PlaceRepositoryProtocol {
     
-    func getPlaces() -> AnyPublisher<[PlaceModel], Error>{
+    func getPlaces() -> AnyPublisher<[PlaceModel], Error> {
         
         return self.locale.getPlaces()
-            .flatMap{ result -> AnyPublisher<[PlaceModel], Error> in
+            .flatMap { result -> AnyPublisher<[PlaceModel], Error> in
                 if result.isEmpty {
                     
                     return self.remote.getPlaces()
@@ -46,7 +46,7 @@ extension PlaceRepository: PlaceRepositoryProtocol{
                         }
                         .eraseToAnyPublisher()
                     
-                }else{
+                } else {
                     return self.locale.getPlaces()
                         .map { PlaceMapper.mapPlaceEntitiesToDomains(input: $0) }
                         .eraseToAnyPublisher()

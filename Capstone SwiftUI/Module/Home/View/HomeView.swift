@@ -20,29 +20,29 @@ struct HomeView: View {
         
         TabView(selection: $selection) {
             // MARK: - HOME TAB
-            ZStack{
-                if presenter.loadingState{
-                    VStack{
+            ZStack {
+                if presenter.loadingState {
+                    VStack {
                         Text("Memuat...")
                         ProgressView()
                     }
-                } else{
-                    ScrollView(.vertical, showsIndicators: false){
+                } else {
+                    ScrollView(.vertical, showsIndicators: false) {
                         ForEach(
                             self.presenter.places,
                             id: \.id
-                        ){ place in
+                        ) { place in
                             
-                            ZStack{
-                                self.presenter.linkBuilder(for: place){
+                            ZStack {
+                                self.presenter.linkBuilder(for: place) {
                                     PlaceRow(presenter: presenter, place: place)
                                 }.buttonStyle(PlainButtonStyle())
                             }.padding(8)
                         }
                     }
                 }
-            }.onAppear{
-                if self.presenter.places.count == 0{
+            }.onAppear {
+                if self.presenter.places.count == 0 {
                     self.presenter.getPlaces()
                 }
             }.navigationBarTitle(
@@ -55,9 +55,9 @@ struct HomeView: View {
             }
             .tag(0)
             // MARK: - FAVORITE TAB
-            ZStack{
-                if checkFavoriteTab() == false{
-                    VStack{
+            ZStack {
+                if checkFavoriteTab() == false {
+                    VStack {
                         
                         Image("No Favorite")
                             .resizable()
@@ -68,30 +68,29 @@ struct HomeView: View {
                             .font(.system(size: 12))
                             .foregroundColor(.gray)
                     }
-                } else{
-                    ScrollView(.vertical, showsIndicators: false){
+                } else {
+                    ScrollView(.vertical, showsIndicators: false) {
                         
                         MySearchBar(searchText: $searchText, isSearching: $isSearching)
                         
-                        if !searchText.isEmpty{
+                        if !searchText.isEmpty {
                             ForEach(
-                                presenter.places.filter{ $0.isFavorite == true &&
-                                    "\($0.name)".contains(searchText)}
-                            ){ place in
+                                presenter.places.filter { $0.isFavorite == true && "\($0.name)".contains(searchText) }
+                            ) { place in
                                 
-                                ZStack{
-                                    presenter.linkBuilder(for: place){
+                                ZStack {
+                                    presenter.linkBuilder(for: place) {
                                         PlaceRow(presenter: presenter, place: place)
                                     }.buttonStyle(PlainButtonStyle())
                                 }.padding(8)
                             }
-                        }else{
+                        } else {
                             ForEach(
-                                presenter.places.filter{$0.isFavorite == true}
-                            ){ place in
+                                presenter.places.filter { $0.isFavorite == true }
+                            ) { place in
                                 
-                                ZStack{
-                                    presenter.linkBuilder(for: place){
+                                ZStack {
+                                    presenter.linkBuilder(for: place) {
                                         PlaceRow(presenter: presenter, place: place)
                                     }.buttonStyle(PlainButtonStyle())
                                 }.padding(8)
@@ -99,8 +98,8 @@ struct HomeView: View {
                         }
                     }
                 }
-            }.onAppear{
-                if presenter.places.count == 0{
+            }.onAppear {
+                if presenter.places.count == 0 {
                     presenter.getPlaces()
                 }
             }.navigationBarTitle(
@@ -113,7 +112,7 @@ struct HomeView: View {
             }
             .tag(1)
             // MARK: - PROFILE TAB
-            VStack{
+            VStack {
                 
                 Image("icad")
                     .resizable()
@@ -134,36 +133,34 @@ struct HomeView: View {
             .tag(2)
         }
         .accentColor(.pink)
-        .onAppear(){
+        .onAppear {
             UITabBar.appearance().barTintColor = .white
-
+            
         }
         .navigationTitle("Tourism App")
         
     }
     
-    func checkFavoriteTab() -> Bool{
+    func checkFavoriteTab() -> Bool {
         
         var isFavoritedExist = false
         
-        for place in presenter.places{
-            if place.isFavorite{
-                isFavoritedExist = true
-                return isFavoritedExist
-            }
+        for place in presenter.places where place.isFavorite {
+            isFavoritedExist = true
+            return isFavoritedExist
         }
         return isFavoritedExist
     }
 }
 
-struct MySearchBar: View{
+struct MySearchBar: View {
     
     @Binding var searchText: String
     @Binding var isSearching: Bool
     
-    var body: some View{
-        HStack{
-            HStack{
+    var body: some View {
+        HStack {
+            HStack {
                 TextField("Cari tempat favoritmu", text: $searchText)
                     .padding(.leading, 24)
             }
@@ -171,15 +168,15 @@ struct MySearchBar: View{
             .background(Color(.systemGray5))
             .cornerRadius(6)
             .padding(.horizontal)
-            .onTapGesture(count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/, perform: {
+            .onTapGesture( count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/) {
                 isSearching = true
-            })
+            }
             .overlay(
-                HStack{
+                HStack {
                     Image(systemName: "magnifyingglass")
                     Spacer()
                     
-                    if isSearching{
+                    if isSearching {
                         Button(action: {searchText = ""}, label: {
                             Image(systemName: "xmark.circle.fill")
                                 .padding(.vertical)
@@ -191,12 +188,12 @@ struct MySearchBar: View{
             ).transition(.move(edge: .trailing))
             .animation(.spring())
             
-            if isSearching{
+            if isSearching {
                 Button(action: {
                     isSearching = false
                     searchText = ""
-                    
-                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    UIApplication.shared.sendAction( #selector(UIResponder.resignFirstResponder),
+                                                     to: nil, from: nil, for: nil)
                 }, label: {
                     Text("Batal")
                         .padding(.trailing)

@@ -13,12 +13,12 @@ struct DetailView: View {
     @ObservedObject var presenter: DetailPresenter
     
     var body: some View {
-        ZStack{
-            if presenter.loadingState{
+        ZStack {
+            if presenter.loadingState {
                 loadingIndicator
-            }else{
-                ScrollView(.vertical){
-                    VStack{
+            } else {
+                ScrollView(.vertical) {
+                    VStack {
                         imagePlace
                         content
                     }
@@ -28,19 +28,19 @@ struct DetailView: View {
     }
 }
 
-extension DetailView{
-    var spacer: some View{
+extension DetailView {
+    var spacer: some View {
         Spacer()
     }
     
-    var loadingIndicator: some View{
-        VStack{
+    var loadingIndicator: some View {
+        VStack {
             Text("Loading")
             ProgressView()
         }
     }
     
-    var imagePlace: some View{
+    var imagePlace: some View {
         WebImage(url: URL(string: self.presenter.place.image))
             .resizable()
             .indicator(.activity)
@@ -50,9 +50,9 @@ extension DetailView{
             .frame(width: 300, height: 300, alignment: .center)
             .ignoresSafeArea()
             .overlay(
-                VStack{
+                VStack {
                     spacer
-                    HStack{
+                    HStack {
                         spacer
                         Image("like")
                             .resizable()

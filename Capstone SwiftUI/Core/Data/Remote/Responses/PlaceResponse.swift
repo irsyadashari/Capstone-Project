@@ -18,7 +18,7 @@ struct PlaceResponse: Decodable {
     let like: Int
     let image: String
     
-    enum CodingKeys: String, CodingKey{
+    enum CodingKeys: String, CodingKey {
         case id
         case name
         case desc = "description"

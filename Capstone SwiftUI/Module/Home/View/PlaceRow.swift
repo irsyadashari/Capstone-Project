@@ -14,12 +14,12 @@ struct PlaceRow: View {
     
     var place: PlaceModel
     
-    var placeIndex: Int{
+    var placeIndex: Int {
         presenter.places.firstIndex(where: {$0.id == place.id}) ?? 0
     }
     
     var body: some View {
-        VStack{
+        VStack {
             imagePlace
             Spacer()
             content
@@ -32,9 +32,9 @@ struct PlaceRow: View {
     }
 }
 
-extension PlaceRow{
+extension PlaceRow {
     
-    var imagePlace: some View{
+    var imagePlace: some View {
         WebImage(url: URL(string: place.image))
             .resizable()
             .indicator(.activity)
@@ -47,9 +47,9 @@ extension PlaceRow{
     var content: some View {
         VStack(alignment: .leading, spacing: 10) {
             
-            HStack{
+            HStack {
                 Spacer()
-                Button(action: {toogleFavorite()}){
+                Button(action: { toogleFavorite()}) {
                     Image(systemName: presenter.places[placeIndex].isFavorite ? "star.fill" : "star")
                 }
             }
@@ -72,7 +72,7 @@ extension PlaceRow{
         
     }
     
-    func toogleFavorite(){
+    func toogleFavorite() {
         presenter.toggleFavorite(place: place)
         presenter.getPlaces()
         print("togle")

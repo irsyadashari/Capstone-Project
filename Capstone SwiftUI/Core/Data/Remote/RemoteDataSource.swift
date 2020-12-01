@@ -9,35 +9,35 @@ import Foundation
 import Alamofire
 import Combine
 
-protocol RemoteDataSourceProtocol: class{
+protocol RemoteDataSourceProtocol: class {
     
     func getPlaces() -> AnyPublisher<[PlaceResponse], Error>
     
 }
 
-final class RemoteDataSource: NSObject{
+final class RemoteDataSource: NSObject {
     
-    private override init(){}
+    private override init() {}
     
     static let sharedInstance: RemoteDataSource = RemoteDataSource()
     
 }
 
-extension RemoteDataSource: RemoteDataSourceProtocol{
+extension RemoteDataSource: RemoteDataSourceProtocol {
     
     func getPlaces() -> AnyPublisher<[PlaceResponse], Error> {
         
         return Future<[PlaceResponse], Error> { completion in
             
-            if let url = URL(string: Endpoints.Gets.places.url){
+            if let url = URL(string: Endpoints.Gets.places.url) {
                 AF.request(url)
                     .validate()
                     .responseDecodable(of: PlacesResponse.self) { response in
                         switch response.result {
-                            case .success(let value):
-                                completion(.success(value.places))
-                            case .failure:
-                                completion(.failure(URLError.invalidResponse))
+                        case .success(let value):
+                            completion(.success(value.places))
+                        case .failure:
+                            completion(.failure(URLError.invalidResponse))
                         }
                     }
             }

@@ -28,11 +28,11 @@ class HomePresenter: ObservableObject {
         homeUseCase.getPlaces()
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { completion in
-                switch completion{
-                    case .failure:
-                        self.errorMessage = String(describing: completion)
-                    case .finished:
-                        self.loadingState = false
+                switch completion {
+                case .failure:
+                    self.errorMessage = String(describing: completion)
+                case .finished:
+                    self.loadingState = false
                 }
             }, receiveValue: { places in
                 self.places = places
@@ -41,16 +41,16 @@ class HomePresenter: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func toggleFavorite(place: PlaceModel){
+    func toggleFavorite(place: PlaceModel) {
         
         homeUseCase.toggleFavorite(place: place)
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: {completion in
-                switch completion{
-                    case .failure:
-                        self.errorMessage = String(describing: completion)
-                    case .finished:
-                        self.loadingState = false
+                switch completion {
+                case .failure:
+                    self.errorMessage = String(describing: completion)
+                case .finished:
+                    self.loadingState = false
                 }
             }, receiveValue: { place in
                 print("success toggling")

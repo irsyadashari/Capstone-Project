@@ -7,17 +7,15 @@
 
 import RealmSwift
 
-enum RealmMigrator{
+enum RealmMigrator {
     
     static private func migrationBlock(
         migration: Migration,
         oldSchemaVersion: UInt64
-    ){
+    ) {
         if oldSchemaVersion < 1 {
-            migration.enumerateObjects(ofType: PlaceEntity.className()){ _ ,
-                newObject in
-                newObject?["isFavorite"] = false
-            }
+            migration.enumerateObjects(ofType: PlaceEntity.className()) { _, newObject in
+              newObject?["isFavorite"] = false }
         }
     }
     
@@ -29,6 +27,4 @@ enum RealmMigrator{
         // 2
         Realm.Configuration.defaultConfiguration = config
     }
-
-    
 }

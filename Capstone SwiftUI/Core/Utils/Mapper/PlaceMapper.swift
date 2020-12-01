@@ -17,7 +17,7 @@ final class PlaceMapper {
                 name: result.name,
                 desc: result.desc,
                 address: result.address,
-                like: Int(result.like),
+                like: Int.random(in: 0..<101),
                 image: result.image,
                 isFavorite: false
                 
@@ -34,7 +34,7 @@ final class PlaceMapper {
             newPlace.name = result.name
             newPlace.desc = result.desc
             newPlace.address = result.address
-            newPlace.like = result.like
+            newPlace.like = Int.random(in: 0..<101)
             newPlace.image = result.image
             newPlace.isFavorite = false
             return newPlace

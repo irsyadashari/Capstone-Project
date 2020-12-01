@@ -12,11 +12,11 @@ protocol HomeUseCase {
     func toggleFavorite(place: PlaceModel) -> AnyPublisher<PlaceModel, Error>
 }
 
-class HomeInteractor: HomeUseCase{
+class HomeInteractor: HomeUseCase {
     
     private let repository: PlaceRepositoryProtocol
     
-    required init (repository: PlaceRepositoryProtocol){
+    required init (repository: PlaceRepositoryProtocol) {
         self.repository = repository
     }
     
