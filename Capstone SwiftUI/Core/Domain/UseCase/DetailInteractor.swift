@@ -4,14 +4,12 @@
 //
 //  Created by Irsyad Ashari on 11/11/20.
 
-import Foundation
-
-protocol DetailUseCase{
+protocol DetailUseCase {
     
     func getPlace() -> PlaceModel
 }
 
-class DetailInteractor: DetailUseCase{
+class DetailInteractor: DetailUseCase {
     
     private let repository: PlaceRepositoryProtocol
     private let place: PlaceModel
@@ -19,7 +17,7 @@ class DetailInteractor: DetailUseCase{
     required init(
         repository: PlaceRepositoryProtocol,
         place: PlaceModel
-    ){
+    ) {
         self.repository = repository
         self.place = place
     }

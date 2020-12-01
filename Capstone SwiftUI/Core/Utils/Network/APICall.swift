@@ -28,7 +28,7 @@ enum Endpoints {
         public var url: String {
             switch self {
                 
-                case .places: return "\(API.baseUrl)/list"
+            case .places: return "\(API.baseUrl)/list"
                
             }
         }

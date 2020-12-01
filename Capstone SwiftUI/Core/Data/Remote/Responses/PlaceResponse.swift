@@ -5,8 +5,6 @@
 //  Created by Irsyad Ashari on 05/11/20.
 //
 
-import Foundation
-
 struct PlacesResponse: Decodable {
     let message: String
     let places: [PlaceResponse]
@@ -20,7 +18,7 @@ struct PlaceResponse: Decodable {
     let like: Int
     let image: String
     
-    enum CodingKeys: String, CodingKey{
+    enum CodingKeys: String, CodingKey {
         case id
         case name
         case desc = "description"

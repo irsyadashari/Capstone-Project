@@ -5,8 +5,6 @@
 //  Created by Irsyad Ashari on 11/11/20.
 //
 
-import Foundation
-
 struct PlaceModel: Equatable, Identifiable {
     
     let id: Int
@@ -15,5 +13,5 @@ struct PlaceModel: Equatable, Identifiable {
     let address: String
     let like: Int
     let image: String
-    
+    var isFavorite: Bool
 }

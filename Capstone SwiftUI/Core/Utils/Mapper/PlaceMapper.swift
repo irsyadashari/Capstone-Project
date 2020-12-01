@@ -5,8 +5,6 @@
 //  Created by Irsyad Ashari on 11/11/20.
 //
 
-import Foundation
-
 final class PlaceMapper {
     
     static func mapPlaceResponsesToDomains(
@@ -19,8 +17,10 @@ final class PlaceMapper {
                 name: result.name,
                 desc: result.desc,
                 address: result.address,
-                like: Int(result.like),
-                image: result.image
+                like: Int.random(in: 0..<101),
+                image: result.image,
+                isFavorite: false
+                
             )
         }
     }
@@ -34,8 +34,9 @@ final class PlaceMapper {
             newPlace.name = result.name
             newPlace.desc = result.desc
             newPlace.address = result.address
-            newPlace.like = result.like
+            newPlace.like = Int.random(in: 0..<101)
             newPlace.image = result.image
+            newPlace.isFavorite = false
             return newPlace
         }
     }
@@ -50,7 +51,8 @@ final class PlaceMapper {
                 desc: result.desc,
                 address: result.address,
                 like: Int(result.like),
-                image: result.image
+                image: result.image,
+                isFavorite: result.isFavorite
             )
         }
     }
