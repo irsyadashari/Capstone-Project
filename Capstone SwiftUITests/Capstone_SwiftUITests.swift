@@ -12,7 +12,7 @@ class CapstoneSwiftUITests: XCTestCase {
   
   func testFavoriteChecking() {
     
-    
+    //test travis ci
   }
   
 }
