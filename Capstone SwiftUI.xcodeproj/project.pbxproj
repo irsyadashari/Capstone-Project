@@ -31,11 +31,22 @@
 		BF0D96DE255BAF340069F088 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0D96DD255BAF340069F088 /* HomeView.swift */; };
 		BF0D96E1255BB0E80069F088 /* PlaceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0D96E0255BB0E80069F088 /* PlaceRow.swift */; };
 		BF0D96E4255BB8B70069F088 /* LocaleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0D96E3255BB8B70069F088 /* LocaleDataSource.swift */; };
+		BF2D92D225773ACF00B251AA /* Capstone_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D92D125773ACF00B251AA /* Capstone_SwiftUITests.swift */; };
 		BF42FC2C255E68250031AA60 /* FavoriteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF42FC2B255E68250031AA60 /* FavoriteRouter.swift */; };
 		BF42FC35255E7C460031AA60 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BF42FC34255E7C460031AA60 /* .swiftlint.yml */; };
 		BF42FC702562A95F0031AA60 /* RealmMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF42FC6F2562A95F0031AA60 /* RealmMigrator.swift */; };
 		CF78BAB63466F53BDDF3C68A /* Pods_Capstone_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF3FF6DE9EC5C59C6B5CAED /* Pods_Capstone_SwiftUI.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BF2D92D425773ACF00B251AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF0D9672255B94660069F088 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF0D9679255B94660069F088;
+			remoteInfo = "Capstone SwiftUI";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		169C054F262FA2C3E135221E /* Pods-Capstone SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Capstone SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Capstone SwiftUI/Pods-Capstone SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
@@ -66,6 +77,10 @@
 		BF0D96DD255BAF340069F088 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BF0D96E0255BB0E80069F088 /* PlaceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceRow.swift; sourceTree = "<group>"; };
 		BF0D96E3255BB8B70069F088 /* LocaleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleDataSource.swift; sourceTree = "<group>"; };
+		BF2D92AF2577297800B251AA /* Capstone SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = "Capstone SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF2D92CF25773ACF00B251AA /* Capstone SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Capstone SwiftUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF2D92D125773ACF00B251AA /* Capstone_SwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capstone_SwiftUITests.swift; sourceTree = "<group>"; };
+		BF2D92D325773ACF00B251AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF42FC2B255E68250031AA60 /* FavoriteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouter.swift; sourceTree = "<group>"; };
 		BF42FC34255E7C460031AA60 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		BF42FC6F2562A95F0031AA60 /* RealmMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMigrator.swift; sourceTree = "<group>"; };
@@ -78,6 +93,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF78BAB63466F53BDDF3C68A /* Pods_Capstone_SwiftUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF2D92CC25773ACF00B251AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,9 +119,13 @@
 			children = (
 				BF42FC34255E7C460031AA60 /* .swiftlint.yml */,
 				BF0D967C255B94660069F088 /* Capstone SwiftUI */,
+				BF2D92D025773ACF00B251AA /* Capstone SwiftUITests */,
 				BF0D967B255B94660069F088 /* Products */,
-				D783C03F694C9F33AC21DA87 /* Pods */,
 				57DEB2F74B651EBD587E07C9 /* Frameworks */,
+				D783C03F694C9F33AC21DA87 /* Pods */,
+				BF2D92AD2577293800B251AA /* CapstoneTest */,
+				BF2D92AE2577295200B251AA /* CapstoneUITest */,
+				BF2D92B02577297800B251AA /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				BF0D967A255B94660069F088 /* Capstone SwiftUI.app */,
+				BF2D92CF25773ACF00B251AA /* Capstone SwiftUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -165,7 +192,6 @@
 			children = (
 				BF0D96A2255B96F80069F088 /* Network */,
 				BF0D96A4255B96F80069F088 /* Mapper */,
-				BF0D96A6255B96F80069F088 /* Extensions */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -181,6 +207,7 @@
 		BF0D96A4255B96F80069F088 /* Mapper */ = {
 			isa = PBXGroup;
 			children = (
+				BF0D96A6255B96F80069F088 /* Extensions */,
 				BF0D96A5255B96F80069F088 /* PlaceMapper.swift */,
 			);
 			path = Mapper;
@@ -361,6 +388,37 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		BF2D92AD2577293800B251AA /* CapstoneTest */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CapstoneTest;
+			sourceTree = "<group>";
+		};
+		BF2D92AE2577295200B251AA /* CapstoneUITest */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CapstoneUITest;
+			sourceTree = "<group>";
+		};
+		BF2D92B02577297800B251AA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF2D92AF2577297800B251AA /* Capstone SwiftUI.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BF2D92D025773ACF00B251AA /* Capstone SwiftUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BF2D92D125773ACF00B251AA /* Capstone_SwiftUITests.swift */,
+				BF2D92D325773ACF00B251AA /* Info.plist */,
+			);
+			path = "Capstone SwiftUITests";
+			sourceTree = "<group>";
+		};
 		D783C03F694C9F33AC21DA87 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -393,6 +451,24 @@
 			productReference = BF0D967A255B94660069F088 /* Capstone SwiftUI.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BF2D92CE25773ACF00B251AA /* Capstone SwiftUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF2D92D625773ACF00B251AA /* Build configuration list for PBXNativeTarget "Capstone SwiftUITests" */;
+			buildPhases = (
+				BF2D92CB25773ACF00B251AA /* Sources */,
+				BF2D92CC25773ACF00B251AA /* Frameworks */,
+				BF2D92CD25773ACF00B251AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BF2D92D525773ACF00B251AA /* PBXTargetDependency */,
+			);
+			name = "Capstone SwiftUITests";
+			productName = "Capstone SwiftUITests";
+			productReference = BF2D92CF25773ACF00B251AA /* Capstone SwiftUITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -404,6 +480,10 @@
 				TargetAttributes = {
 					BF0D9679255B94660069F088 = {
 						CreatedOnToolsVersion = 12.0;
+					};
+					BF2D92CE25773ACF00B251AA = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = BF0D9679255B94660069F088;
 					};
 				};
 			};
@@ -421,6 +501,7 @@
 			projectRoot = "";
 			targets = (
 				BF0D9679255B94660069F088 /* Capstone SwiftUI */,
+				BF2D92CE25773ACF00B251AA /* Capstone SwiftUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -434,6 +515,13 @@
 				BF0D968A255B94680069F088 /* LaunchScreen.storyboard in Resources */,
 				BF0D9687255B94680069F088 /* Preview Assets.xcassets in Resources */,
 				BF0D9684255B94680069F088 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF2D92CD25773ACF00B251AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,7 +617,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BF2D92CB25773ACF00B251AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF2D92D225773ACF00B251AA /* Capstone_SwiftUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BF2D92D525773ACF00B251AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF0D9679255B94660069F088 /* Capstone SwiftUI */;
+			targetProxy = BF2D92D425773ACF00B251AA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		BF0D9688255B94680069F088 /* LaunchScreen.storyboard */ = {
@@ -670,6 +774,7 @@
 				DEVELOPMENT_TEAM = ZAF4VGV8W6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Capstone SwiftUI/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -692,6 +797,7 @@
 				DEVELOPMENT_TEAM = ZAF4VGV8W6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Capstone SwiftUI/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -700,6 +806,46 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BF2D92D725773ACF00B251AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZAF4VGV8W6;
+				INFOPLIST_FILE = "Capstone SwiftUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.irsyadashari.www.Capstone-SwiftUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Capstone SwiftUI.app/Capstone SwiftUI";
+			};
+			name = Debug;
+		};
+		BF2D92D825773ACF00B251AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZAF4VGV8W6;
+				INFOPLIST_FILE = "Capstone SwiftUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.irsyadashari.www.Capstone-SwiftUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Capstone SwiftUI.app/Capstone SwiftUI";
 			};
 			name = Release;
 		};
@@ -720,6 +866,15 @@
 			buildConfigurations = (
 				BF0D968F255B94680069F088 /* Debug */,
 				BF0D9690255B94680069F088 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF2D92D625773ACF00B251AA /* Build configuration list for PBXNativeTarget "Capstone SwiftUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF2D92D725773ACF00B251AA /* Debug */,
+				BF2D92D825773ACF00B251AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
