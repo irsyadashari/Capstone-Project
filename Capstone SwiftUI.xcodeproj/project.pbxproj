@@ -123,8 +123,6 @@
 				BF0D967B255B94660069F088 /* Products */,
 				57DEB2F74B651EBD587E07C9 /* Frameworks */,
 				D783C03F694C9F33AC21DA87 /* Pods */,
-				BF2D92AD2577293800B251AA /* CapstoneTest */,
-				BF2D92AE2577295200B251AA /* CapstoneUITest */,
 				BF2D92B02577297800B251AA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -386,20 +384,6 @@
 				BF0D968B255B94680069F088 /* Info.plist */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		BF2D92AD2577293800B251AA /* CapstoneTest */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CapstoneTest;
-			sourceTree = "<group>";
-		};
-		BF2D92AE2577295200B251AA /* CapstoneUITest */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CapstoneUITest;
 			sourceTree = "<group>";
 		};
 		BF2D92B02577297800B251AA /* Products */ = {
