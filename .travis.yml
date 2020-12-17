@@ -1,5 +1,6 @@
 language: swift
 osx_image: xcode12 
-xcode_project: Capstone SwiftUI.xcworkspace 
+xcode_workspace: Capstone SwiftUI.xcworkspace
+podfile: Podfile
 xcode_scheme: Capstone SwiftUI
 xcode_destination: platform=iOS Simulator,OS=14.0,name=iPhone 11 Pro Max
