@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions
     ) {
-        RealmMigrator.setDefaultConfiguration()
+//        RealmMigrator.setDefaultConfiguration()
         
         let homeUseCase = Injection.init().provideHome()
         let homePresenter = HomePresenter(homeUseCase: homeUseCase)
