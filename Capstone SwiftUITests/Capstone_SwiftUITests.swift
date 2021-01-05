@@ -9,10 +9,8 @@ import SwiftUI
 @testable import Capstone_SwiftUI
 
 class CapstoneSwiftUITests: XCTestCase {
-
   
   func testFavoriteChecking() {
-    
     
   }
   

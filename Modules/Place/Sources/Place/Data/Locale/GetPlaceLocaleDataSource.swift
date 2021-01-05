@@ -21,7 +21,6 @@ public struct GetPlacesLocaleDataSource: LocaleDataSource {
         _realm = realm
     }
     
-    
     public func list(request: Any?) -> AnyPublisher<[PlaceModuleEntity], Error> {
         return Future<[PlaceModuleEntity], Error> { completion in
             let places: Results<PlaceModuleEntity> = {

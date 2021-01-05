@@ -30,6 +30,6 @@ let package = Package(
             ]),
         .testTarget(
             name: "PlaceTests",
-            dependencies: ["Place"]),
+            dependencies: ["Place"])
     ]
 )

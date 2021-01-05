@@ -29,10 +29,10 @@ public enum DatabaseError: LocalizedError {
     
     public var errorDescription: String? {
         switch self {
-            case .invalidInstance :
-                return "instance database tidak ada."
-            case .requestFailed :
-                return "request gagal."
+        case .invalidInstance :
+            return "instance database tidak ada."
+        case .requestFailed :
+            return "request gagal."
         }
     }
 }
