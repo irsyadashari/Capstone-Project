@@ -11,7 +11,7 @@ public protocol LocaleDataSource {
     associatedtype Request
     associatedtype Response
     
-    func getPlaces(request: Request?) -> AnyPublisher<[Response], Error>
-    func addPlaces(entities: [Response]) -> AnyPublisher<Bool, Error>
-    func toggleFavorite(place: PlaceModel) -> AnyPublisher<PlaceModel, Error>
+    func list(request: Request?) -> AnyPublisher<[Response], Error>
+    func add(entities: [Response]) -> AnyPublisher<Bool, Error>
+    func update(id: Int, entity: Response) -> AnyPublisher<Bool, Error>
 }
