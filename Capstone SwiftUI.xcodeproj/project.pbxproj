@@ -84,6 +84,7 @@
 		BF42FC2B255E68250031AA60 /* FavoriteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouter.swift; sourceTree = "<group>"; };
 		BF42FC34255E7C460031AA60 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		BF42FC6F2562A95F0031AA60 /* RealmMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMigrator.swift; sourceTree = "<group>"; };
+		BF9421E125A40EE800FEE104 /* Core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Core; path = Modules/Core; sourceTree = "<group>"; };
 		D0CD701C80D10A238620A1F3 /* Pods-Capstone SwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Capstone SwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-Capstone SwiftUI/Pods-Capstone SwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +118,7 @@
 		BF0D9671255B94660069F088 = {
 			isa = PBXGroup;
 			children = (
+				BF9421E125A40EE800FEE104 /* Core */,
 				BF42FC34255E7C460031AA60 /* .swiftlint.yml */,
 				BF0D967C255B94660069F088 /* Capstone SwiftUI */,
 				BF2D92D025773ACF00B251AA /* Capstone SwiftUITests */,
