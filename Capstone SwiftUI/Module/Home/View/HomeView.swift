@@ -5,153 +5,79 @@
 //  Created by Irsyad Ashari on 11/11/20.
 
 import SwiftUI
+import Core
+import Place
 
 struct HomeView: View {
     
-    @ObservedObject var presenter: HomePresenter
-    
-    @State private var selection = 0
-    
-    @State private var searchText = ""
-    
-    @State private var isSearching  = false
+    @ObservedObject var presenter: GetListPresenter<Any, PlaceDomainModel,
+                                                    Interactor<Any, [PlaceDomainModel],
+                                                    GetPlacesRepository<GetPlacesLocaleDataSource,
+                                                    GetPlacesRemoteDataSource, PlaceTransformer>>>
     
     var body: some View {
         
-        TabView(selection: $selection) {
-            // MARK: - HOME TAB
-            ZStack {
-                if presenter.loadingState {
-                    VStack {
-                        Text("Memuat...")
-                        ProgressView()
-                    }
-                } else {
-                    ScrollView(.vertical, showsIndicators: false) {
-                        ForEach(
-                            self.presenter.places,
-                            id: \.id
-                        ) { place in
-                            
-                            ZStack {
-                                self.presenter.linkBuilder(for: place) {
-                                    PlaceRow(presenter: presenter, place: place)
-                                }.buttonStyle(PlainButtonStyle())
-                            }.padding(8)
-                        }
-                    }
-                }
-            }.onAppear {
-                if self.presenter.places.count == 0 {
-                    self.presenter.getPlaces()
-                }
-            }.navigationBarTitle(
-                Text("Tourism App"),
-                displayMode: .automatic
-            )
-            .tabItem {
-                Image(systemName: "house.fill")
-                Text("Home")
+        ZStack {
+            if presenter.isLoading {
+                loadingIndicator
+            } else if presenter.isError {
+                errorIndicator
+            } else if presenter.list.isEmpty {
+                emptyCategories
+            } else {
+                content
             }
-            .tag(0)
-            // MARK: - FAVORITE TAB
-            ZStack {
-                if checkFavoriteTab() == false {
-                    VStack {
-                        
-                        Image("No Favorite")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 200, height: 200, alignment: .center)
-                            .clipShape(Circle())
-                        Text("Anda belum menambahkan tempat favorit Anda!")
-                            .font(.system(size: 12))
-                            .foregroundColor(.gray)
-                    }
-                } else {
-                    ScrollView(.vertical, showsIndicators: false) {
-                        
-                        MySearchBar(searchText: $searchText, isSearching: $isSearching)
-                        
-                        if !searchText.isEmpty {
-                            ForEach(
-                                presenter.places.filter { $0.isFavorite == true && "\($0.name)".contains(searchText) }
-                            ) { place in
-                                
-                                ZStack {
-                                    presenter.linkBuilder(for: place) {
-                                        PlaceRow(presenter: presenter, place: place)
-                                    }.buttonStyle(PlainButtonStyle())
-                                }.padding(8)
-                            }
-                        } else {
-                            ForEach(
-                                presenter.places.filter { $0.isFavorite == true }
-                            ) { place in
-                                
-                                ZStack {
-                                    presenter.linkBuilder(for: place) {
-                                        PlaceRow(presenter: presenter, place: place)
-                                    }.buttonStyle(PlainButtonStyle())
-                                }.padding(8)
-                            }
-                        }
-                    }
-                }
-            }.onAppear {
-                if presenter.places.count == 0 {
-                    presenter.getPlaces()
-                }
-            }.navigationBarTitle(
-                Text("Tourism App"),
-                displayMode: .automatic
-            )
-            .tabItem {
-                Image(systemName: "star.fill")
-                Text("Favorite")
+        }.onAppear {
+            if self.presenter.list.count == 0 { // 2
+                self.presenter.getList(request: nil) // 3
             }
-            .tag(1)
-            // MARK: - PROFILE TAB
-            VStack {
-                
-                Image("icad")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 200, height: 200, alignment: .center)
-                    .clipShape(Circle())
-                Text("Muhammad Irsyad Ashari")
-                    .font(.system(size: 28, weight: .bold, design: .rounded))
-                Text("Mobile Developer")
-                    .font(.system(size: 20, weight: .bold, design: .rounded))
-                Text("+6287880931606")
-                    .font(.system(size: 16, weight: .bold, design: .rounded))
-            }
-            .tabItem {
-                Image(systemName: "person.crop.circle")
-                Text("Profile")
-            }
-            .tag(2)
-        }
-        .accentColor(.pink)
-        .onAppear {
-            UITabBar.appearance().barTintColor = .white
-            
-        }
-        .navigationTitle("Tourism App")
+        }.navigationBarTitle(
+            Text("Tourism Apps"),
+            displayMode: .automatic
+        )
         
     }
     
-    func checkFavoriteTab() -> Bool {
-        
-        var isFavoritedExist = false
-        
-        for place in presenter.places where place.isFavorite {
-            isFavoritedExist = true
-            return isFavoritedExist
-        }
-        return isFavoritedExist
-    }
 }
+
+extension HomeView {
+    
+    var loadingIndicator: some View {
+        VStack {
+            Text("Loading...")
+            ActivityIndicator()
+        }
+    }
+    
+    var errorIndicator: some View {
+        CustomEmptyView(
+            image: "assetSearchNotFound",
+            title: presenter.errorMessage
+        ).offset(y: 80)
+    }
+    
+    var emptyCategories: some View {
+        CustomEmptyView(
+            image: "assetNoFavorite",
+            title: "List is empty"
+        ).offset(y: 80)
+    }
+    
+    var content: some View {
+        ScrollView(.vertical, showsIndicators: false) {
+            ForEach(
+                self.presenter.list,
+                id: \.id
+            ) { place in
+                ZStack {
+                    PlaceRow(place: place)
+                }.buttonStyle(PlainButtonStyle())
+            }
+        }
+    }
+    
+}
+
 
 struct MySearchBar: View {
     

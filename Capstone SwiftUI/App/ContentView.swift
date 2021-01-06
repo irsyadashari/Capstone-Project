@@ -6,13 +6,33 @@
 //
 
 import SwiftUI
+import Core
+import Place
 
 struct ContentView: View {
-    @EnvironmentObject var homePresenter: HomePresenter
+    @EnvironmentObject var homePresenter: GetListPresenter<Any,
+                                          PlaceDomainModel,
+                                          Interactor<Any, [PlaceDomainModel],
+                                          GetPlacesRepository<GetPlacesLocaleDataSource,
+                                          GetPlacesRemoteDataSource,
+                                          PlaceTransformer>>>
+    
+    @EnvironmentObject var favoritePresenter: FavoritePresenter
     
     var body: some View {
-        NavigationView {
-            HomeView(presenter: homePresenter)
+       
+        TabView {
+            NavigationView {
+                HomeView(presenter: homePresenter)
+            }.tabItem {
+                TabItem(imageName: "house", title: "Home")
+            }
+            
+            NavigationView {
+                FavoriteView(presenter: favoritePresenter)
+            }.tabItem {
+                TabItem(imageName: "heart", title: "Favorite")
+            }
         }
     }
 }

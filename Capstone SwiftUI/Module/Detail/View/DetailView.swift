@@ -88,9 +88,6 @@ extension DetailView {
       HStack {
         Text(self.presenter.place.name)
           .font(.system(size: 28, weight: .bold, design: .rounded))
-        Button(action: { toogleFavorite()}) {
-          Image(systemName: homePresenter.places[placeIndex].isFavorite ? "star.fill" : "star")
-        }
       }
       
       Text(self.presenter.place.address)
@@ -101,11 +98,5 @@ extension DetailView {
     }.padding()
     
     .accentColor(.pink)
-  }
-  
-  func toogleFavorite() {
-    homePresenter.toggleFavorite(place: presenter.place)
-    homePresenter.getPlaces()
-    print("togle from detail")
   }
 }

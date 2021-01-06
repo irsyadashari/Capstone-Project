@@ -11,7 +11,10 @@ import Foundation
 protocol PlaceRepositoryProtocol {
     
     func getPlaces() -> AnyPublisher<[PlaceModel], Error>
-    func toggleFavorite(place: PlaceModel) -> AnyPublisher<PlaceModel, Error>
+    func getPlace(by idPlace: Int) -> AnyPublisher<PlaceModel, Error>
+//    func searchPlace(by name: String) -> AnyPublisher<[PlaceModel], Error>
+    func getFavoritePlaces() -> AnyPublisher<[PlaceModel], Error>
+    func updateFavoritePlace(by idPlace: Int) -> AnyPublisher<PlaceModel, Error>
 }
 
 final class PlaceRepository: NSObject {
@@ -32,31 +35,51 @@ final class PlaceRepository: NSObject {
 extension PlaceRepository: PlaceRepositoryProtocol {
     
     func getPlaces() -> AnyPublisher<[PlaceModel], Error> {
-        
         return self.locale.getPlaces()
             .flatMap { result -> AnyPublisher<[PlaceModel], Error> in
                 if result.isEmpty {
-                    
                     return self.remote.getPlaces()
                         .map { PlaceMapper.mapPlaceResponsesToEntities(input: $0) }
+                        .catch { _ in self.locale.getPlaces() }
                         .flatMap { self.locale.addPlaces(from: $0) }
                         .filter { $0 }
                         .flatMap { _ in self.locale.getPlaces()
                             .map { PlaceMapper.mapPlaceEntitiesToDomains(input: $0) }
                         }
                         .eraseToAnyPublisher()
-                    
                 } else {
                     return self.locale.getPlaces()
                         .map { PlaceMapper.mapPlaceEntitiesToDomains(input: $0) }
                         .eraseToAnyPublisher()
                 }
             }.eraseToAnyPublisher()
-        
     }
     
-    func toggleFavorite(place: PlaceModel) -> AnyPublisher<PlaceModel, Error> {
-        
-        return self.locale.toggleFavorite(place: place)
+    func getPlace(by idPlace: Int) -> AnyPublisher<PlaceModel, Error> {
+        return self.locale.getPlace(by: idPlace)
+            .flatMap { result -> AnyPublisher<PlaceModel, Error> in
+                
+                return self.locale.getPlace(by: idPlace)
+                    .map { PlaceMapper.mapDetailPlaceEntityToDomain(input: $0) }
+                    .eraseToAnyPublisher()
+                
+            }.eraseToAnyPublisher()
     }
+    
+//    func searchPlace(by name: String) -> AnyPublisher<[PlaceModel], Error> {
+//        return self.locale.getPlace(by: )
+//    }
+    
+    func getFavoritePlaces() -> AnyPublisher<[PlaceModel], Error> {
+        return self.locale.getFavoritePlaces()
+            .map { PlaceMapper.mapPlaceEntitiesToDomains(input: $0) }
+            .eraseToAnyPublisher()
+    }
+    
+    func updateFavoritePlace(by idPlace: Int) -> AnyPublisher<PlaceModel, Error> {
+        return self.locale.updateFavoritePlace(by: idPlace)
+            .map { PlaceMapper.mapDetailPlaceEntityToDomain(input: $0) }
+            .eraseToAnyPublisher()
+    }
+    
 }

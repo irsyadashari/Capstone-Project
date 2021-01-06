@@ -12,8 +12,10 @@ import Foundation
 protocol LocaleDataSourceProtocol: class {
     
     func getPlaces() -> AnyPublisher<[PlaceEntity], Error>
+    func getPlace(by idPlace: Int) -> AnyPublisher<PlaceEntity, Error>
     func addPlaces(from places: [PlaceEntity]) -> AnyPublisher<Bool, Error>
-    func toggleFavorite(place: PlaceModel) -> AnyPublisher<PlaceModel, Error>
+    func getFavoritePlaces() -> AnyPublisher<[PlaceEntity], Error>
+    func updateFavoritePlace(by idPlace: Int) -> AnyPublisher<PlaceEntity, Error>
 }
 
 final class LocaleDataSource: NSObject {
@@ -28,6 +30,61 @@ final class LocaleDataSource: NSObject {
 }
 
 extension LocaleDataSource: LocaleDataSourceProtocol {
+    
+    func getPlace(by idPlace: Int) -> AnyPublisher<PlaceEntity, Error> {
+        return Future<PlaceEntity, Error> { completion in
+            if let realm = self.realm {
+                let places: Results<PlaceEntity> = {
+                    realm.objects(PlaceEntity.self)
+                        .filter("id = '\(idPlace)'")
+                }()
+                
+                guard let place = places.first else {
+                    completion(.failure(DatabaseError.requestFailed))
+                    return
+                }
+                
+                completion(.success(place))
+            } else {
+                completion(.failure(DatabaseError.invalidInstance))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func getFavoritePlaces() -> AnyPublisher<[PlaceEntity], Error> {
+        return Future<[PlaceEntity], Error> { completion in
+            if let realm = self.realm {
+                let placeEntities = {
+                    realm.objects(PlaceEntity.self)
+                        .filter("isFavorite = \(true)")
+                        .sorted(byKeyPath: "name", ascending: true)
+                }()
+                completion(.success(placeEntities.toArray(ofType: PlaceEntity.self)))
+            } else {
+                completion(.failure(DatabaseError.invalidInstance))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func updateFavoritePlace(by idPlace: Int) -> AnyPublisher<PlaceEntity, Error> {
+        return Future<PlaceEntity, Error> { completion in
+            if let realm = self.realm, let placeEntity = {
+                realm.objects(PlaceEntity.self).filter("id = '\(idPlace)'")
+            }().first {
+                do {
+                    try realm.write {
+                        placeEntity.setValue(!placeEntity.isFavorite, forKey: "isFavorite")
+                    }
+                    completion(.success(placeEntity))
+                } catch {
+                    completion(.failure(DatabaseError.requestFailed))
+                }
+            } else {
+                completion(.failure(DatabaseError.invalidInstance))
+            }
+        }.eraseToAnyPublisher()
+    }
+    
     
     func getPlaces() -> AnyPublisher<[PlaceEntity], Error> {
         
@@ -66,28 +123,7 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
         }.eraseToAnyPublisher()
     }
     
-    func toggleFavorite(place: PlaceModel) -> AnyPublisher<PlaceModel, Error> {
-        
-        return Future<PlaceModel, Error> { completion in
-            if let realm = self.realm {
-                do {
-                    try realm.write {
-                        realm.create(
-                            PlaceEntity.self,
-                            value: ["id": place.id, "isFavorite": !place.isFavorite],
-                            update: .modified)
-                        completion(.success(place))
-                    }
-                } catch let error {
-                    // Handle error
-                    completion(.failure(DatabaseError.invalidInstance))
-                    print(error.localizedDescription)
-                }
-            } else {
-                completion(.failure(DatabaseError.invalidInstance))
-            }
-        }.eraseToAnyPublisher()
-    }
+   
 }
 
 extension Results {

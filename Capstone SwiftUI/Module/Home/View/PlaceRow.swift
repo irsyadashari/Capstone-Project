@@ -7,16 +7,11 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Place
 
 struct PlaceRow: View {
     
-    @ObservedObject var presenter: HomePresenter
-    
-    var place: PlaceModel
-    
-    var placeIndex: Int {
-        presenter.places.firstIndex(where: {$0.id == place.id}) ?? 0
-    }
+    var place: PlaceDomainModel
     
     var body: some View {
         VStack {
@@ -39,21 +34,14 @@ extension PlaceRow {
             .resizable()
             .indicator(.activity)
             .transition(.fade(duration: 0.5))
-            .scaledToFill()
-            .frame(maxWidth: .infinity)
+            .scaledToFit()
+            .frame(width: 200)
             .cornerRadius(30)
+            .padding(.top)
     }
     
     var content: some View {
         VStack(alignment: .leading, spacing: 10) {
-            
-            HStack {
-                Spacer()
-                Button(action: { toogleFavorite()}) {
-                    Image(systemName: presenter.places[placeIndex].isFavorite ? "star.fill" : "star")
-                }
-            }
-            
             Text(place.name)
                 .font(.title)
                 .bold()
@@ -69,12 +57,6 @@ extension PlaceRow {
                 trailing: 16
             )
         )
-        
-    }
-    
-    func toogleFavorite() {
-        presenter.toggleFavorite(place: place)
-        presenter.getPlaces()
     }
     
 }

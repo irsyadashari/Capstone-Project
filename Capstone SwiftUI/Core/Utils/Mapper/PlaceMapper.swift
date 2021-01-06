@@ -5,7 +5,24 @@
 //  Created by Irsyad Ashari on 11/11/20.
 //
 
+import Foundation
+
 final class PlaceMapper {
+    
+    static func mapDetailPlaceEntityToDomain(
+        input placeEntity: PlaceEntity
+    ) -> PlaceModel {
+       
+        return PlaceModel(
+            id: placeEntity.id,
+            name: placeEntity.name,
+            desc: placeEntity.desc,
+            address: placeEntity.address,
+            like: Int(placeEntity.like),
+            image: placeEntity.image,
+            isFavorite: placeEntity.isFavorite
+        )
+    }
     
     static func mapPlaceResponsesToDomains(
         input placeResponses: [PlaceResponse]

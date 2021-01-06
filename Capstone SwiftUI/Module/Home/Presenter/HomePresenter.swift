@@ -41,24 +41,6 @@ class HomePresenter: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func toggleFavorite(place: PlaceModel) {
-        
-        homeUseCase.toggleFavorite(place: place)
-            .receive(on: RunLoop.main)
-            .sink(receiveCompletion: {completion in
-                switch completion {
-                case .failure:
-                    self.errorMessage = String(describing: completion)
-                case .finished:
-                    self.loadingState = false
-                }
-            }, receiveValue: { place in
-                print("success toggling")
-                self.places[self.places.firstIndex(where: {$0.id == place.id}) ?? 0 + 1] = place
-            })
-            .store(in: &cancellables)
-    }
-    
     func linkBuilder<Content: View>(
         for place: PlaceModel,
         @ViewBuilder content: () -> Content
