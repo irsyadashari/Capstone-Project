@@ -29,7 +29,7 @@ public struct PlaceTransformer: Mapper {
         }
     }
     
-    public func transformEntityToDomain(entity: [CategoryModuleEntity]) -> [CategoryDomainModel] {
+    public func transformEntityToDomain(entity: [PlaceModuleEntity]) -> [PlaceDomainModel] {
         return entity.map { result in
             return PlaceDomainModel(
                 id: result.id,

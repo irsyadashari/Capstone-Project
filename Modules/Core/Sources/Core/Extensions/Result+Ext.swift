@@ -5,7 +5,7 @@
 //  Created by Irsyad Ashari on 05/01/21.
 //
 
-import Foundation
+import RealmSwift
 
 extension Results {
     

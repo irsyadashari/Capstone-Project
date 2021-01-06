@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -35,6 +35,8 @@
 		BF42FC2C255E68250031AA60 /* FavoriteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF42FC2B255E68250031AA60 /* FavoriteRouter.swift */; };
 		BF42FC35255E7C460031AA60 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BF42FC34255E7C460031AA60 /* .swiftlint.yml */; };
 		BF42FC702562A95F0031AA60 /* RealmMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF42FC6F2562A95F0031AA60 /* RealmMigrator.swift */; };
+		BF74EAF125A564D800557421 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = BF74EAF025A564D800557421 /* Core */; };
+		BF74EAF325A564D800557421 /* Place in Frameworks */ = {isa = PBXBuildFile; productRef = BF74EAF225A564D800557421 /* Place */; };
 		CF78BAB63466F53BDDF3C68A /* Pods_Capstone_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF3FF6DE9EC5C59C6B5CAED /* Pods_Capstone_SwiftUI.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,7 +96,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF74EAF325A564D800557421 /* Place in Frameworks */,
 				CF78BAB63466F53BDDF3C68A /* Pods_Capstone_SwiftUI.framework in Frameworks */,
+				BF74EAF125A564D800557421 /* Core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +439,10 @@
 			dependencies = (
 			);
 			name = "Capstone SwiftUI";
+			packageProductDependencies = (
+				BF74EAF025A564D800557421 /* Core */,
+				BF74EAF225A564D800557421 /* Place */,
+			);
 			productName = "Capstone SwiftUI";
 			productReference = BF0D967A255B94660069F088 /* Capstone SwiftUI.app */;
 			productType = "com.apple.product-type.application";
@@ -868,6 +876,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BF74EAF025A564D800557421 /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
+		BF74EAF225A564D800557421 /* Place */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Place;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BF0D9672255B94660069F088 /* Project object */;
 }

@@ -11,7 +11,7 @@ import RealmSwift
 import Combine
 
 public struct GetPlacesLocaleDataSource: LocaleDataSource {
-    
+   
     public typealias Request = Any
     public typealias Response = PlaceModuleEntity
     
