@@ -11,11 +11,6 @@ import SDWebImageSwiftUI
 struct DetailView: View {
   
   @ObservedObject var presenter: DetailPresenter
-  @ObservedObject var homePresenter: HomePresenter
-  
-  var placeIndex: Int {
-    homePresenter.places.firstIndex(where: {$0.id == presenter.place.id}) ?? 0
-  }
   
   var body: some View {
     ZStack {
@@ -54,32 +49,11 @@ extension DetailView {
       .transition(.fade(duration: 0.5))
       .frame(width: 300, height: 300, alignment: .center)
       .ignoresSafeArea()
-      .overlay(
-        VStack {
-          spacer
-          HStack {
-            spacer
-            Image("like")
-              .resizable()
-              .frame(width: 30, height: 30, alignment: .center)
-            
-            Text(" \(self.presenter.place.like)")
-              .foregroundColor(Color.pink)
-              .font(.system(size: 24, weight: .bold, design: .rounded))
-          }
-          .padding(.bottom, 24)
-        }
-      )
   }
   
   var description: some View {
     Text(self.presenter.place.desc)
       .font(.system(size: 15))
-  }
-  
-  func headerTitle(_ title: String) -> some View {
-    return Text(title)
-      .font(.headline)
   }
   
   var content: some View {

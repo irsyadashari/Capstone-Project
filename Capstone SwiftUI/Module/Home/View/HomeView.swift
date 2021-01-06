@@ -15,6 +15,8 @@ struct HomeView: View {
                                                     GetPlacesRepository<GetPlacesLocaleDataSource,
                                                     GetPlacesRemoteDataSource, PlaceTransformer>>>
     
+    private let homeRouter = HomeRouter()
+    
     var body: some View {
         
         ZStack {
@@ -28,8 +30,8 @@ struct HomeView: View {
                 content
             }
         }.onAppear {
-            if self.presenter.list.count == 0 { // 2
-                self.presenter.getList(request: nil) // 3
+            if self.presenter.list.count == 0 {
+                self.presenter.getList(request: nil)
             }
         }.navigationBarTitle(
             Text("Tourism Apps"),
@@ -41,6 +43,13 @@ struct HomeView: View {
 }
 
 extension HomeView {
+    
+    func detailLinkBuilder<Content: View>(
+        for place: PlaceModel,
+        @ViewBuilder content: () -> Content
+    ) -> some View {
+        NavigationLink(destination: homeRouter.makeDetailView(for: place)) { content()}
+    }
     
     var loadingIndicator: some View {
         VStack {
@@ -70,15 +79,15 @@ extension HomeView {
                 id: \.id
             ) { place in
                 ZStack {
-                    PlaceRow(place: place)
+                    let placeModel = PlaceModel(id: place.id, name: place.name, desc: place.desc, address: place.address, like: place.like, image: place.image)
+                    self.detailLinkBuilder(for: placeModel) {
+                        PlaceRow(place: place)
+                    }
                 }.buttonStyle(PlainButtonStyle())
             }
         }
     }
-    
 }
-
-
 struct MySearchBar: View {
     
     @Binding var searchText: String

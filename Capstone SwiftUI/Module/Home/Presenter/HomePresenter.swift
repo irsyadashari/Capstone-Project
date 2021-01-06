@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import Place
 
 class HomePresenter: ObservableObject {
 
@@ -46,7 +47,7 @@ class HomePresenter: ObservableObject {
         @ViewBuilder content: () -> Content
     ) -> some View {
         NavigationLink(
-          destination: router.makeDetailView(for: place, homePresenter: self)) { content() }
+          destination: router.makeDetailView(for: place)) { content() }
     }
     
 }

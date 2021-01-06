@@ -50,9 +50,9 @@ extension FavoriteView {
     
     var emptyFavorites: some View {
         CustomEmptyView(
-            image: "assetNoFavorite",
+            image: "No Favorite",
             title: "Your favorite is empty"
-        ).offset(y: 80)
+        )
     }
     
     var content: some View {

@@ -23,18 +23,18 @@ class PlacePresenter: ObservableObject {
         place = placeUseCase.getPlace()
     }
     
-    func getMeal() {
+    func getPlace() {
         isLoading = true
         placeUseCase.getPlace()
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
-                    case .failure (let error):
-                        self.errorMessage = error.localizedDescription
-                        self.isError = true
-                        self.isLoading = false
-                    case .finished:
-                        self.isLoading = false
+                case .failure (let error):
+                    self.errorMessage = error.localizedDescription
+                    self.isError = true
+                    self.isLoading = false
+                case .finished:
+                    self.isLoading = false
                 }
             }, receiveValue: { place in
                 self.place = place
@@ -47,10 +47,10 @@ class PlacePresenter: ObservableObject {
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
-                    case .failure:
-                        self.errorMessage = String(describing: completion)
-                    case .finished:
-                        self.isLoading = false
+                case .failure:
+                    self.errorMessage = String(describing: completion)
+                case .finished:
+                    self.isLoading = false
                 }
             }, receiveValue: { place in
                 self.place = place

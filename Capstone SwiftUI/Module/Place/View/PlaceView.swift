@@ -28,7 +28,7 @@ struct PlaceView: View {
                 }
             }
         }.onAppear {
-            self.presenter.getMeal()
+            self.presenter.getPlace()
         }.alert(isPresented: $showingAlert) {
             Alert(
                 title: Text("Oops!"),
@@ -59,7 +59,6 @@ extension PlaceView {
         ).offset(y: 80)
     }
     
-    
     var imagePlace: some View {
         WebImage(url: URL(string: self.presenter.place.image))
             .resizable()
@@ -73,13 +72,18 @@ extension PlaceView {
     var content: some View {
         VStack(alignment: .leading, spacing: 8) {
             
+            Text(presenter.place.name)
+                .font(.system(size: 24))
+            
+            Text(presenter.place.address)
+                .font(.system(size: 20))
+            
             Text(presenter.place.desc)
                 .font(.system(size: 16))
             
             Divider()
                 .padding(.vertical)
             
-           
         }.padding(.top)
     }
     
