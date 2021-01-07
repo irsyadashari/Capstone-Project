@@ -52,6 +52,7 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
     }
     
     func getFavoritePlaces() -> AnyPublisher<[PlaceEntity], Error> {
+        
         return Future<[PlaceEntity], Error> { completion in
             if let realm = self.realm {
                 let placeEntities = {
@@ -66,10 +67,12 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
         }.eraseToAnyPublisher()
     }
     
-    func updateFavoritePlace(by idPlace: Int) -> AnyPublisher<PlaceEntity, Error> {
+    func updateFavoritePlace(
+        by idPlace: Int
+    ) -> AnyPublisher<PlaceEntity, Error> {
         return Future<PlaceEntity, Error> { completion in
             if let realm = self.realm, let placeEntity = {
-                realm.objects(PlaceEntity.self).filter("id = '\(idPlace)'")
+                realm.objects(PlaceEntity.self).filter("id = \(Int(idPlace))")
             }().first {
                 do {
                     try realm.write {
@@ -80,21 +83,22 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
                     completion(.failure(DatabaseError.requestFailed))
                 }
             } else {
+                print(DatabaseError.invalidInstance)
                 completion(.failure(DatabaseError.invalidInstance))
             }
         }.eraseToAnyPublisher()
     }
     
-    
     func getPlaces() -> AnyPublisher<[PlaceEntity], Error> {
         
         return Future<[PlaceEntity], Error> { completion in
-            
+           
             if let realm = self.realm {
                 let places: Results<PlaceEntity> = {
                     realm.objects(PlaceEntity.self)
                         .sorted(byKeyPath: "name", ascending: true)
                 }()
+                print(places)
                 completion(.success(places.toArray(ofType: PlaceEntity.self)))
             } else {
                 completion(.failure(DatabaseError.invalidInstance))
@@ -102,16 +106,20 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
         }.eraseToAnyPublisher()
     }
     
-    func addPlaces(from places: [PlaceEntity]) -> AnyPublisher<Bool, Error> {
-        
+    func addPlaces(
+        from places: [PlaceEntity]
+    ) -> AnyPublisher<Bool, Error> {
         return Future<Bool, Error> { completion in
-            
+            print("suksek menambahkan data ke database")
             if let realm = self.realm {
                 do {
                     try realm.write {
                         for place in places {
+                            print("Place Object\n")
+                            print("\(place)")
                             realm.add(place, update: .all)
                         }
+
                         completion(.success(true))
                     }
                 } catch {
@@ -122,7 +130,6 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
             }
         }.eraseToAnyPublisher()
     }
-    
    
 }
 

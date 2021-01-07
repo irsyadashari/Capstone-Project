@@ -12,7 +12,7 @@ protocol PlaceUseCase {
     
     func getPlace() -> AnyPublisher<PlaceModel, Error>
     func getPlace() -> PlaceModel
-    func updateFavoritePlace() -> AnyPublisher<PlaceModel, Error>
+    func updateFavoritePlace() -> AnyPublisher<PlaceEntity, Error>
     
 }
 
@@ -37,8 +37,7 @@ class PlaceInteractor: PlaceUseCase {
         return place
     }
     
-    func updateFavoritePlace() -> AnyPublisher<PlaceModel, Error> {
+    func updateFavoritePlace() -> AnyPublisher<PlaceEntity, Error> {
         return repository.updateFavoritePlace(by: place.id)
     }
 }
-

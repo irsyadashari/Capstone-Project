@@ -28,8 +28,10 @@ final class Injection: NSObject {
     }
     
     private func provideRepository() -> PlaceRepositoryProtocol {
-        let realm = try? Realm()
-        let locale: LocaleDataSource = LocaleDataSource.sharedInstance(realm)
+//        let realm = try? Realm()
+//        print("Its executed")
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let locale: LocaleDataSource = LocaleDataSource.sharedInstance(appDelegate.realm)
         let remote: RemoteDataSource = RemoteDataSource.sharedInstance
         
         return PlaceRepository.sharedInstance(locale, remote)
@@ -51,7 +53,7 @@ final class Injection: NSObject {
     }
     
     func provideFavorite() -> FavoriteUseCase {
-        let repository = provideRepository()
+        let repository = provideRepository() //Ini penyebabnya doubleki instancenya realm mu
         return FavoriteInteractor(repository: repository)
     }
     

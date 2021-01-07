@@ -29,11 +29,11 @@ class FavoritePresenter: ObservableObject {
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
-                    case .failure(let error):
-                        self.errorMessage = error.localizedDescription
-                        self.isError = true
-                    case .finished:
-                        self.isLoading = false
+                case .failure(let error):
+                    self.errorMessage = error.localizedDescription
+                    self.isError = true
+                case .finished:
+                    self.isLoading = false
                 }
             }, receiveValue: { places in
                 self.places = places
@@ -50,4 +50,3 @@ class FavoritePresenter: ObservableObject {
     }
     
 }
-

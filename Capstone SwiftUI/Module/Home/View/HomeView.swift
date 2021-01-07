@@ -48,7 +48,7 @@ extension HomeView {
         for place: PlaceModel,
         @ViewBuilder content: () -> Content
     ) -> some View {
-        NavigationLink(destination: homeRouter.makeDetailView(for: place)) { content()}
+        NavigationLink(destination: homeRouter.makeDetailView(for: place)) { content()} 
     }
     
     var loadingIndicator: some View {

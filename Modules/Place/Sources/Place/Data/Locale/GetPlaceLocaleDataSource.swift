@@ -31,8 +31,7 @@ public struct GetPlacesLocaleDataSource: LocaleDataSource {
             
         }.eraseToAnyPublisher()
     }
-    
-    
+        
     public func add(entities: [PlaceModuleEntity]) -> AnyPublisher<Bool, Error> {
         return Future<Bool, Error> { completion in
             do {

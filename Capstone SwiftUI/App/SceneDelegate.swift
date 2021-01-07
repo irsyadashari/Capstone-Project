@@ -19,6 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions
     ) {
+//        RealmMigrator.setDefaultConfiguration()
+        
         let favoriteUseCase = Injection.init().provideFavorite()
         let placeUseCase: Interactor<
             Any,

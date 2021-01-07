@@ -51,8 +51,6 @@ extension FavoriteRow {
                 .font(.system(size: 16))
                 .lineLimit(2)
             
-            
-            
         }.padding(
             EdgeInsets(
                 top: 0,

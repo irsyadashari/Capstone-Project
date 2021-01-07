@@ -14,4 +14,10 @@ class HomeRouter {
         let presenter = DetailPresenter(detailUseCase: detailUseCase)
         return DetailView(presenter: presenter)
     }
+    
+    func makePlaceView(for place: PlaceModel) -> some View {
+        let placeUseCase = Injection.init().providePlace(place: place)
+        let presenter = PlacePresenter(placeUseCase: placeUseCase)
+        return PlaceView(presenter: presenter)
+    }
 }

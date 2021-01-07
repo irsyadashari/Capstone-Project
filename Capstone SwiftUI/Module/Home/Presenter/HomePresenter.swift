@@ -36,8 +36,8 @@ class HomePresenter: ObservableObject {
                     self.loadingState = false
                 }
             }, receiveValue: { places in
-                self.places = places
                 print("places : \(places)")
+                self.places = places
             })
             .store(in: &cancellables)
     }

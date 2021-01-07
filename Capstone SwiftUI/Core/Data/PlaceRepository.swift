@@ -14,22 +14,24 @@ protocol PlaceRepositoryProtocol {
     func getPlace(by idPlace: Int) -> AnyPublisher<PlaceModel, Error>
 //    func searchPlace(by name: String) -> AnyPublisher<[PlaceModel], Error>
     func getFavoritePlaces() -> AnyPublisher<[PlaceModel], Error>
-    func updateFavoritePlace(by idPlace: Int) -> AnyPublisher<PlaceModel, Error>
+    func updateFavoritePlace(by idPlace: Int) -> AnyPublisher<PlaceEntity, Error>
 }
 
 final class PlaceRepository: NSObject {
     
     typealias PlaceInstance = (LocaleDataSource, RemoteDataSource) -> PlaceRepository
+    
     fileprivate let remote: RemoteDataSource
     fileprivate let locale: LocaleDataSource
+    
     private init(locale: LocaleDataSource, remote: RemoteDataSource) {
         self.remote = remote
         self.locale = locale
     }
+    
     static let sharedInstance: PlaceInstance = { localeRepo, remoteRepo in
         return PlaceRepository(locale: localeRepo, remote: remoteRepo)
     }
-    
 }
 
 extension PlaceRepository: PlaceRepositoryProtocol {
@@ -37,7 +39,9 @@ extension PlaceRepository: PlaceRepositoryProtocol {
     func getPlaces() -> AnyPublisher<[PlaceModel], Error> {
         return self.locale.getPlaces()
             .flatMap { result -> AnyPublisher<[PlaceModel], Error> in
+                
                 if result.isEmpty {
+                    print("ini result kosong")
                     return self.remote.getPlaces()
                         .map { PlaceMapper.mapPlaceResponsesToEntities(input: $0) }
                         .catch { _ in self.locale.getPlaces() }
@@ -48,6 +52,7 @@ extension PlaceRepository: PlaceRepositoryProtocol {
                         }
                         .eraseToAnyPublisher()
                 } else {
+                    print("ini result local")
                     return self.locale.getPlaces()
                         .map { PlaceMapper.mapPlaceEntitiesToDomains(input: $0) }
                         .eraseToAnyPublisher()
@@ -55,9 +60,11 @@ extension PlaceRepository: PlaceRepositoryProtocol {
             }.eraseToAnyPublisher()
     }
     
-    func getPlace(by idPlace: Int) -> AnyPublisher<PlaceModel, Error> {
+    func getPlace(
+        by idPlace: Int
+    ) -> AnyPublisher<PlaceModel, Error> {
         return self.locale.getPlace(by: idPlace)
-            .flatMap { result -> AnyPublisher<PlaceModel, Error> in
+            .flatMap { _ -> AnyPublisher<PlaceModel, Error> in
                 
                 return self.locale.getPlace(by: idPlace)
                     .map { PlaceMapper.mapDetailPlaceEntityToDomain(input: $0) }
@@ -76,10 +83,10 @@ extension PlaceRepository: PlaceRepositoryProtocol {
             .eraseToAnyPublisher()
     }
     
-    func updateFavoritePlace(by idPlace: Int) -> AnyPublisher<PlaceModel, Error> {
+    func updateFavoritePlace(
+        by idPlace: Int
+    ) -> AnyPublisher<PlaceEntity, Error> {
         return self.locale.updateFavoritePlace(by: idPlace)
-            .map { PlaceMapper.mapDetailPlaceEntityToDomain(input: $0) }
-            .eraseToAnyPublisher()
     }
     
 }

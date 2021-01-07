@@ -53,7 +53,8 @@ class PlacePresenter: ObservableObject {
                     self.isLoading = false
                 }
             }, receiveValue: { place in
-                self.place = place
+                let placeObj = PlaceModel(id: place.id, name: place.name, desc: place.desc, address: place.address, like: place.like, image: place.image)
+                self.place = placeObj
             })
             .store(in: &cancellables)
     }
